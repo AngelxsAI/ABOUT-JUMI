@@ -1,1 +1,153 @@
-hola
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bienvenido a JUMI</title>
+  <style>
+    /* Fondo animado tipo aurora */
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(270deg, #001F3F, #003366, #004C99, #0066CC, #007FFF);
+      background-size: 1000% 1000%;
+      animation: fondo 20s ease infinite;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      text-align: center;
+    }
+
+    @keyframes fondo {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Mapa con colores animados */
+    .mapa {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg') center/contain no-repeat;
+      opacity: 0.1;
+      filter: hue-rotate(0deg);
+      animation: colores 20s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes colores {
+      0% { filter: hue-rotate(0deg); }
+      50% { filter: hue-rotate(180deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+
+    /* Texto principal */
+    h1 {
+      font-size: 1.8em;
+      max-width: 700px;
+      margin: 0 20px;
+      opacity: 0;
+      animation: aparecer 2s ease forwards;
+      text-shadow: 0 0 15px #00ffff, 0 0 30px #00ccff;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Subtítulo brillante */
+    .sub {
+      margin-top: 20px;
+      font-size: 2em;
+      font-weight: bold;
+      color: #00ffff;
+      text-shadow: 0 0 20px #00ffff, 0 0 40px #00ccff;
+      opacity: 0;
+      animation: glow 2s ease-in-out 1s forwards;
+    }
+
+    @keyframes glow {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Botón */
+    #btn-avanzar {
+      margin-top: 40px;
+      padding: 12px 35px;
+      font-size: 1.2em;
+      color: #fff;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+      box-shadow: 0 0 25px rgba(0, 150, 255, 0.7);
+      animation: boton 3s ease forwards 2s;
+    }
+
+    @keyframes boton {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #btn-avanzar:hover {
+      background: linear-gradient(90deg, #0072ff, #00c6ff);
+      transform: scale(1.05);
+    }
+
+    /* Pie de página */
+    footer {
+      position: absolute;
+      bottom: 15px;
+      font-size: 0.9em;
+      color: #ccc;
+      opacity: 0;
+      animation: aparecer 2s ease forwards 3s;
+    }
+
+    footer span {
+      color: #00ffff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mapa"></div>
+
+  <h1>Bienvenido usuario, en esta web conocerás sobre Cristo.</h1>
+  <div class="sub">Bienvenido a JUMI</div>
+  
+
+  <footer>Desarrollado por <span>Angel</span></footer>
+
+  <script>
+    const boton = document.getElementById("btn-avanzar");
+
+    // Redirige automáticamente después de 6 segundos
+    setTimeout(() => {
+      window.location.href = "Html2.html";
+    }, 6000);
+
+    // O manualmente con el botón
+    boton.onclick = () => {
+      boton.textContent = "Cargando...";
+      boton.disabled = true;
+      setTimeout(() => {
+        window.location.href = "Html2.html";
+      }, 1000);
+    };
+  </script>
+
+</body>
+</html>
