@@ -4,10 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JUMI - Grupo Juvenil Católico</title>
-  <!-- Font Awesome para los iconos -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <!-- Enlace a la fuente Poppins -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,900;1,300&display=swap" rel="stylesheet">
+  <!-- Font Awesome para los iconos --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Enlace a la fuente Poppins --><link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,900;1,300&display=swap" rel="stylesheet">
   
   <style>
     /* VARIABLES DE COLOR */
@@ -399,8 +397,7 @@
   <header>
     <div class="header-content">
       <div class="logo">
-        <!-- Ícono de Cruz SVG Mejorado (Diseño Latin Cross más robusto) -->
-        <svg class="cruz-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ícono de Cruz SVG Mejorado (Diseño Latin Cross más robusto) --><svg class="cruz-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <path d="M 40 0 L 60 0 L 60 40 L 100 40 L 100 60 L 60 60 L 60 100 L 40 100 L 40 60 L 0 60 L 0 40 L 40 40 L 40 0 Z" fill="white"/>
         </svg>
         <h1>JUMI</h1>
@@ -426,19 +423,16 @@
     </div>
   </nav>
 
-  <!-- Contenedor del Versículo (se llena con JS) -->
-  <div id="versiculo-del-dia"></div>
+  <!-- Contenedor del Versículo (se llena con JS) --><div id="versiculo-del-dia"></div>
 
   <main>
-    <!-- SECCIÓN: Generador de Carteles de Inspiración -->
-    <section id="generador-inspiracion" class="section">
+    <!-- SECCIÓN: Generador de Carteles de Inspiración --><section id="generador-inspiracion" class="section">
       <h2><i class="fas fa-paint-brush"></i> Generador de Carteles de Inspiración</h2>
       <p>Escribe tu mensaje o reflexión. Generaremos un cartel con la imagen de Jesús y el enlace de JUMI, listo para compartir.</p>
       
       <div style="max-width: 600px; margin: 20px auto;">
         <textarea id="mensajeInput" placeholder="Escribe tu mensaje de fe o reflexión (ej. 'La alegría del Señor es nuestra fuerza.')..."></textarea>
-        <!-- Mensaje de error para el generador -->
-        <p id="error-message"></p>
+        <!-- Mensaje de error para el generador --><p id="error-message"></p>
         <button id="generarCartelBtn" class="btn btn-primary" style="width: 100%;"><i class="fas fa-wand-magic-sparkles"></i> Generar Cartel</button>
       </div>
 
@@ -449,9 +443,7 @@
         <p style="font-size: 0.8em; margin-top: 10px; color: gray;">*El cartel incluye la foto, tu mensaje y el enlace de JUMI.</p>
       </div>
     </section>
-    <!-- FIN SECCIÓN GENERADOR -->
-
-    <section id="inicio" class="section">
+    <!-- FIN SECCIÓN GENERADOR --><section id="inicio" class="section">
       <h2><i class="fas fa-cross"></i> Bienvenidos a JUMI</h2>
       <p>JUMI es un espacio creado para jóvenes que buscan crecer en su fe católica, compartir experiencias y formar una comunidad basada en los valores cristianos. Aquí encontrarás un ambiente de amor, respeto y fraternidad donde podrás desarrollar tu espiritualidad.</p>
       <p>Nuestro objetivo es fortalecer la relación con Dios a través de la oración, el estudio de la Biblia y el servicio comunitario. Te invitamos a unirte a nuestras actividades y ser parte de esta maravillosa familia espiritual.</p>
@@ -544,8 +536,7 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
-  <script>
+  <!-- SCRIPTS --><script>
     // URL y constantes actualizadas
     const URL_JUMI = "https://about-jumi.vercel.app/";
     const NOMBRE_IMAGEN_CARTEL = "Jesus.jpg"; 
@@ -581,7 +572,7 @@
         iniciar() {
           this.configurarEventos();
           this.cargarVersiculo();
-          this.precargarImagenCartel();
+          this.precargarImagenCartel(); // Precarga la imagen de Jesús
           setInterval(() => this.cargarVersiculo(), 86400000); 
         },
 
@@ -764,40 +755,75 @@
         // 2. Dibujar el Mensaje (Texto del usuario)
         ctx.fillStyle = 'white';
         ctx.textAlign = 'center';
-        
-        const lineHeight = 60;
-        const maxWidth = CARTEL_WIDTH - 100;
-        const xPos = CARTEL_WIDTH / 2;
-        
-        // Configuración para el efecto de sombra/borde del texto
-        ctx.strokeStyle = 'rgba(0, 0, 0, 0.8)';
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.8)'; // Sombra/borde del texto
         ctx.lineWidth = 2;
-        ctx.font = '700 48px Poppins';
         
-        // Lógica de ajuste de línea y centrado
-        const words = mensaje.split(' ');
+        // Definir el área "segura" para el texto (evitando la parte inferior-central de Jesús)
+        // Estimación: Jesús ocupa aproximadamente el 40% del ancho centrado y 50% de la altura desde abajo
+        const safeAreaLeft = CARTEL_WIDTH * 0.3;
+        const safeAreaRight = CARTEL_WIDTH * 0.7;
+        const safeAreaTop = CARTEL_HEIGHT * 0.05; // Margen superior
+        const safeAreaBottom = CARTEL_HEIGHT * 0.5; // Jesús ocupa la mitad inferior de la imagen
+
+        const maxTextWidth = CARTEL_WIDTH - 100; // Ancho máximo general
+
+        // Intentaremos colocar el texto en la mitad superior primero
+        let currentFontSize = 48; // Tamaño inicial de fuente
+        let lineHeight = currentFontSize * 1.2; // Altura de línea basada en la fuente
         let lines = [];
-        let currentLine = '';
 
-        for(let n = 0; n < words.length; n++) {
-            const testLine = currentLine + words[n] + ' ';
-            if (ctx.measureText(testLine).width > maxWidth && n > 0) {
-                lines.push(currentLine);
-                currentLine = words[n] + ' ';
-            } else {
-                currentLine = testLine;
+        // Función auxiliar para calcular las líneas con un tamaño de fuente dado
+        const calculateLines = (text, fontSize) => {
+            ctx.font = `700 ${fontSize}px Poppins`;
+            const words = text.split(' ');
+            let tempLines = [];
+            let tempLine = '';
+            for(let n = 0; n < words.length; n++) {
+                const testLine = tempLine + words[n] + ' ';
+                if (ctx.measureText(testLine).width > maxTextWidth && n > 0) {
+                    tempLines.push(tempLine.trim());
+                    tempLine = words[n] + ' ';
+                } else {
+                    tempLine = testLine;
+                }
             }
-        }
-        lines.push(currentLine);
+            tempLines.push(tempLine.trim());
+            return tempLines;
+        };
 
-        // Calcular posición inicial para centrar verticalmente
-        let startY = CARTEL_HEIGHT / 2 - (lines.length * lineHeight / 2) + (lineHeight / 2);
+        // Reducir el tamaño de la fuente si el texto es muy largo
+        do {
+            lines = calculateLines(mensaje, currentFontSize);
+            lineHeight = currentFontSize * 1.2;
+            const totalTextHeight = lines.length * lineHeight;
+
+            // Si el texto cabe en la mitad superior
+            if (totalTextHeight < (safeAreaBottom - safeAreaTop - lineHeight)) { // Restamos una lineHeight para un poco de espacio
+                break; // El texto cabe, salimos del bucle
+            }
+            currentFontSize -= 2; // Reduce el tamaño de la fuente
+        } while (currentFontSize >= 24); // Límite inferior para la fuente
+
+        // Si incluso con la fuente más pequeña sigue siendo demasiado largo, lo centramos arriba y que ocupe más altura
+        if (currentFontSize < 24) {
+            currentFontSize = 24; // Aseguramos un mínimo
+            lineHeight = currentFontSize * 1.2;
+            lines = calculateLines(mensaje, currentFontSize); // Recalculamos con el mínimo
+        }
+
+
+        // Calcular posición inicial Y para centrar el texto verticalmente en la zona segura superior
+        const totalTextHeight = lines.length * lineHeight;
+        let startY = safeAreaTop + (safeAreaBottom - safeAreaTop - totalTextHeight) / 2 + (lineHeight * 0.8); // Ajuste fino
+
+
+        ctx.font = `700 ${currentFontSize}px Poppins`;
 
         // Dibujar todas las líneas
         lines.forEach((line, index) => {
             const y = startY + index * lineHeight;
-            ctx.strokeText(line, xPos, y);
-            ctx.fillText(line, xPos, y);
+            ctx.strokeText(line, CARTEL_WIDTH / 2, y);
+            ctx.fillText(line, CARTEL_WIDTH / 2, y);
         });
 
 
