@@ -7,7 +7,7 @@
   <!-- Font Awesome para los iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <!-- Enlace a la fuente Poppins -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,900;1,300&display=swap" rel="stylesheet">
   
   <style>
     /* VARIABLES DE COLOR */
@@ -45,7 +45,7 @@
     header {
       background: linear-gradient(135deg, var(--primary), #8f2fdc);
       color: white;
-      padding: 25px 20px; /* Aumentado el padding para el SVG */
+      padding: 25px 20px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       text-align: center;
     }
@@ -71,6 +71,13 @@
       font-size: 1rem;
       opacity: 0.9;
       margin-top: 5px;
+    }
+    .angel-credit {
+        font-size: 0.85rem;
+        font-style: italic;
+        opacity: 0.7;
+        margin-top: 5px;
+        font-weight: 300;
     }
 
     /* NAVEGACIÓN */
@@ -256,6 +263,12 @@
         border-color: var(--primary);
         outline: none;
     }
+    #error-message {
+        color: #d32f2f;
+        font-weight: 600;
+        margin-bottom: 15px;
+        display: none;
+    }
     #cartelContainer {
         margin-top: 30px;
         background-color: #fff;
@@ -307,7 +320,7 @@
         transform: translateY(-3px);
     }
 
-    /* OTROS ESTILOS DE SECCIÓN (Gallery, Iframes) */
+    /* OTROS ESTILOS DE SECCIÓN (Iframes) */
     iframe {
       width: 100%;
       height: 100%;
@@ -392,6 +405,7 @@
         </svg>
         <h1>JUMI</h1>
         <p class="header-subtitle">Grupo Juvenil Católico - Encuentra paz, amor y unidad en Cristo</p>
+        <p class="angel-credit">Hecho por Ángel</p>
       </div>
     </div>
   </header>
@@ -406,7 +420,6 @@
         <li><a href="#nosotros"><i class="fas fa-users"></i> Sobre Nosotros</a></li>
         <li><a href="#generador-inspiracion"><i class="fas fa-magic"></i> Cartel</a></li>
         <li><a href="#miembros"><i class="fas fa-user-friends"></i> Miembros</a></li>
-        <!-- Sección Álbum Eliminada -->
         <li><a href="#eventos"><i class="fas fa-calendar-alt"></i> Eventos</a></li>
         <li><a href="#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a></li>
       </ul>
@@ -424,6 +437,8 @@
       
       <div style="max-width: 600px; margin: 20px auto;">
         <textarea id="mensajeInput" placeholder="Escribe tu mensaje de fe o reflexión (ej. 'La alegría del Señor es nuestra fuerza.')..."></textarea>
+        <!-- Mensaje de error para el generador -->
+        <p id="error-message"></p>
         <button id="generarCartelBtn" class="btn btn-primary" style="width: 100%;"><i class="fas fa-wand-magic-sparkles"></i> Generar Cartel</button>
       </div>
 
@@ -482,8 +497,6 @@
       <p style="margin-top: 1.5rem; font-style: italic;">"Porque donde dos o tres se reúnen en mi nombre, allí estoy yo en medio de ellos." - Mateo 18:20</p>
     </section>
 
-    <!-- La sección Álbum Fotográfico ha sido eliminada. -->
-
     <section id="eventos" class="section">
       <h2><i class="fas fa-calendar-alt"></i> Próximos Eventos</h2>
       <p>Mantente informado sobre nuestras próximas actividades. ¡Te esperamos con alegría!</p>
@@ -537,6 +550,9 @@
     const URL_JUMI = "https://about-jumi.vercel.app/";
     const NOMBRE_IMAGEN_CARTEL = "Jesus.jpg"; 
 
+    // Variable global para almacenar la imagen del cartel una vez cargada
+    let cartelImage = null;
+
     // Gestor del versículo diario
     const gestorVersiculo = {
         versiculos: [
@@ -565,6 +581,7 @@
         iniciar() {
           this.configurarEventos();
           this.cargarVersiculo();
+          this.precargarImagenCartel();
           setInterval(() => this.cargarVersiculo(), 86400000); 
         },
 
@@ -649,6 +666,20 @@
               </div>
             </div>
           `;
+        },
+
+        precargarImagenCartel() {
+            const img = new Image();
+            img.crossOrigin = 'Anonymous'; 
+            img.src = NOMBRE_IMAGEN_CARTEL; 
+
+            img.onload = () => {
+                cartelImage = img;
+                console.log(`Imagen del cartel (${NOMBRE_IMAGEN_CARTEL}) precargada con éxito.`);
+            };
+            img.onerror = () => {
+                console.warn(`ADVERTENCIA: No se pudo precargar la imagen '${NOMBRE_IMAGEN_CARTEL}'. Se usará el fallback.`);
+            };
         }
     };
 
@@ -674,26 +705,13 @@
     const CARTEL_WIDTH = 800;
     const CARTEL_HEIGHT = 600;
 
-    function wrapText(context, text, x, y, maxWidth, lineHeight) {
-        const words = text.split(' ');
-        let line = '';
-        let currentY = y;
-
-        for(let n = 0; n < words.length; n++) {
-            const testLine = line + words[n] + ' ';
-            const metrics = context.measureText(testLine);
-            const testWidth = metrics.width;
-            
-            if (testWidth > maxWidth && n > 0) {
-                context.fillText(line, x, currentY);
-                line = words[n] + ' ';
-                currentY += lineHeight;
-            } else {
-                line = testLine;
-            }
-        }
-        context.fillText(line, x, currentY);
-        return currentY; // Retorna la altura final para cálculos
+    function showError(message) {
+        const errorEl = document.getElementById('error-message');
+        errorEl.textContent = message;
+        errorEl.style.display = 'block';
+        setTimeout(() => {
+            errorEl.style.display = 'none';
+        }, 5000);
     }
 
     function generarCartelInspiracion() {
@@ -703,97 +721,95 @@
         const cartelContainer = document.getElementById('cartelContainer');
         const compartirBtn = document.getElementById('compartirCartelBtn');
         
+        // Ocultar mensaje de error
+        document.getElementById('error-message').style.display = 'none';
+        
         if (!mensaje) {
-            return alert("Por favor, escribe un mensaje de inspiración antes de generar el cartel.");
+            return showError("¡El mensaje no puede estar vacío! Escribe algo de inspiración.");
         }
 
         // Configurar dimensiones del canvas
         canvas.width = CARTEL_WIDTH;
         canvas.height = CARTEL_HEIGHT;
 
-        const img = new Image();
-        img.crossOrigin = 'Anonymous'; // Necesario para evitar problemas de CORS si la imagen viene de otro dominio
-        img.src = NOMBRE_IMAGEN_CARTEL; // Jesus.jpg
+        // Limpiar canvas
+        ctx.clearRect(0, 0, CARTEL_WIDTH, CARTEL_HEIGHT);
 
-        img.onload = () => {
-            // 1. Dibujar la Imagen (como fondo)
-            // Escalar la imagen para que cubra todo el canvas (aspecto "cover")
-            const scale = Math.max(CARTEL_WIDTH / img.width, CARTEL_HEIGHT / img.height);
-            const x = (CARTEL_WIDTH / 2) - (img.width / 2) * scale;
-            const y = (CARTEL_HEIGHT / 2) - (img.height / 2) * scale;
-            ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+        // 1. Dibujar la Imagen (o Fallback)
+        let imgToDraw = cartelImage;
 
-            // 2. Aplicar un gradiente/capa semi-transparente para mejorar el contraste del texto
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.4)'; // Negro semi-transparente
+        if (imgToDraw && imgToDraw.complete) {
+            // Imagen precargada (éxito)
+            const scale = Math.max(CARTEL_WIDTH / imgToDraw.width, CARTEL_HEIGHT / imgToDraw.height);
+            const x = (CARTEL_WIDTH / 2) - (imgToDraw.width / 2) * scale;
+            const y = (CARTEL_HEIGHT / 2) - (imgToDraw.height / 2) * scale;
+            ctx.drawImage(imgToDraw, x, y, imgToDraw.width * scale, imgToDraw.height * scale);
+            
+            // Aplicar capa semi-transparente para contraste
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
             ctx.fillRect(0, 0, CARTEL_WIDTH, CARTEL_HEIGHT);
 
-            // 3. Dibujar el Mensaje (Texto del usuario)
-            ctx.fillStyle = 'white';
-            ctx.textAlign = 'center';
-            ctx.font = '700 48px Poppins';
-            const lineHeight = 60;
-            const maxWidth = CARTEL_WIDTH - 100;
-            const xPos = CARTEL_WIDTH / 2;
-            let startY = CARTEL_HEIGHT / 2 - (Math.floor(mensaje.length / 20) * (lineHeight / 2)); // Centrado vertical aproximado
-
-            // Dibuja la sombra (stroke) del texto para mejor legibilidad
-            ctx.strokeStyle = 'rgba(0, 0, 0, 0.8)';
-            ctx.lineWidth = 2;
-            ctx.font = '700 48px Poppins';
-            
-            // Usamos un loop para el stroke y fill
-            const words = mensaje.split(' ');
-            let line = '';
-            let currentY = startY;
-
-            for(let n = 0; n < words.length; n++) {
-                const testLine = line + words[n] + ' ';
-                const metrics = ctx.measureText(testLine);
-                const testWidth = metrics.width;
-                
-                if (testWidth > maxWidth && n > 0) {
-                    ctx.strokeText(line, xPos, currentY);
-                    ctx.fillText(line, xPos, currentY);
-                    line = words[n] + ' ';
-                    currentY += lineHeight;
-                } else {
-                    line = testLine;
-                }
-            }
-            ctx.strokeText(line, xPos, currentY);
-            ctx.fillText(line, xPos, currentY);
-
-            // 4. Dibujar el Enlace de Atribución (pequeño en la esquina)
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-            ctx.textAlign = 'right';
-            ctx.font = '200 18px Poppins';
-            ctx.fillText(`Visítanos: ${URL_JUMI}`, CARTEL_WIDTH - 20, CARTEL_HEIGHT - 20);
-
-            // Mostrar el cartel y el botón de compartir
-            cartelContainer.style.display = 'block';
-            compartirBtn.style.display = 'block';
-        };
-
-        img.onerror = () => {
-             // Fallback si la imagen no se encuentra
+        } else {
+            // Fallback si la imagen no se cargó o no existe
             ctx.fillStyle = '#6a0dad';
             ctx.fillRect(0, 0, CARTEL_WIDTH, CARTEL_HEIGHT);
             
             ctx.fillStyle = 'white';
             ctx.textAlign = 'center';
-            ctx.font = '700 36px Poppins';
-            wrapText(ctx, mensaje, CARTEL_WIDTH / 2, CARTEL_HEIGHT / 3, CARTEL_WIDTH - 80, 50);
-
             ctx.font = '300 24px Poppins';
-            ctx.fillText("¡Carga la imagen 'Jesus.jpg' para el fondo!", CARTEL_WIDTH / 2, CARTEL_HEIGHT - 100);
+            ctx.fillText("¡FOTO NO ENCONTRADA!", CARTEL_WIDTH / 2, 50);
+            showError("La imagen 'Jesus.jpg' no se encontró o no se pudo cargar. Se usó un fondo de color sólido.");
+        }
 
-            ctx.font = '200 18px Poppins';
-            ctx.fillText(`Visítanos: ${URL_JUMI}`, CARTEL_WIDTH - 20, CARTEL_HEIGHT - 20);
+        // 2. Dibujar el Mensaje (Texto del usuario)
+        ctx.fillStyle = 'white';
+        ctx.textAlign = 'center';
+        
+        const lineHeight = 60;
+        const maxWidth = CARTEL_WIDTH - 100;
+        const xPos = CARTEL_WIDTH / 2;
+        
+        // Configuración para el efecto de sombra/borde del texto
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.8)';
+        ctx.lineWidth = 2;
+        ctx.font = '700 48px Poppins';
+        
+        // Lógica de ajuste de línea y centrado
+        const words = mensaje.split(' ');
+        let lines = [];
+        let currentLine = '';
 
-            cartelContainer.style.display = 'block';
-            compartirBtn.style.display = 'block';
-            console.warn("ADVERTENCIA: No se pudo cargar la imagen 'Jesus.jpg'. Se generó un cartel con fondo plano.");
-        };
+        for(let n = 0; n < words.length; n++) {
+            const testLine = currentLine + words[n] + ' ';
+            if (ctx.measureText(testLine).width > maxWidth && n > 0) {
+                lines.push(currentLine);
+                currentLine = words[n] + ' ';
+            } else {
+                currentLine = testLine;
+            }
+        }
+        lines.push(currentLine);
+
+        // Calcular posición inicial para centrar verticalmente
+        let startY = CARTEL_HEIGHT / 2 - (lines.length * lineHeight / 2) + (lineHeight / 2);
+
+        // Dibujar todas las líneas
+        lines.forEach((line, index) => {
+            const y = startY + index * lineHeight;
+            ctx.strokeText(line, xPos, y);
+            ctx.fillText(line, xPos, y);
+        });
+
+
+        // 3. Dibujar el Enlace de Atribución (pequeño en la esquina)
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.textAlign = 'right';
+        ctx.font = '200 18px Poppins';
+        ctx.fillText(`Visítanos: ${URL_JUMI}`, CARTEL_WIDTH - 20, CARTEL_HEIGHT - 20);
+
+        // Mostrar el cartel y el botón de compartir
+        cartelContainer.style.display = 'block';
+        compartirBtn.style.display = 'block';
     }
 
     // Función para compartir la imagen del canvas
@@ -830,7 +846,7 @@
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-            alert("Tu navegador no soporta compartir directamente. Se ha descargado la imagen. Puedes compartirla manualmente en WhatsApp.");
+            showError("Tu navegador no soporta compartir directamente. Se ha descargado la imagen.");
         }
     }
     
