@@ -575,9 +575,16 @@
 
     // Lista de groserías para bloqueo (se buscarán en minúsculas y sin acentos)
     const GROSERIAS_BLOQUEO = [
+        // Groserías comunes en español
         "mierda", "puta", "cabron", "cabrón", "coño", "joder", "gilipollas", 
-        "fuck", "shit", "asshole", "bitch", "bastard", "damn", "pendejo", "idiota",
-        "carajo", "verga", "chinga"
+        "pendejo", "idiota", "carajo", "verga", "chinga", "vagina", "culo", 
+        "teta", "semen", "sexo", "porn", "pene", "puto", "coger", "mamada",
+        
+        // Palabras sensibles/ofensivas solicitadas
+        "gay", "homosexual", "maricon", "maricón", "lesbiana", "trans", "bisexual", 
+        
+        // Groserías comunes en inglés (mantener solo algunas)
+        "fuck", "shit", "asshole", "bitch", "bastard", "damn"
     ];
 
     // Variable global para almacenar la imagen del cartel una vez cargada
@@ -599,7 +606,8 @@
         const textoLimpio = limpiarTexto(texto);
         for (const groseria of GROSERIAS_BLOQUEO) {
             // Usa una expresión regular para buscar la palabra completa (con límites de palabra)
-            const regex = new RegExp(`\\b${groseria}\\b`);
+            // Agregamos un operador OR para verificar si el textoLimpio contiene el término en cualquier lugar (no solo como palabra completa)
+            const regex = new RegExp(`\\b${groseria}\\b|${groseria}`); 
             if (regex.test(textoLimpio)) {
                 return true;
             }
@@ -789,7 +797,8 @@
         
         // --- VALIDACIÓN DE GROSERÍAS ---
         if (contieneGroserias(mensaje)) {
-            return showError("Haz utilizado una grosería, elimínala y publica la fotografía");
+            // El mensaje de error indica claramente la razón de la censura.
+            return showError("⚠️ ¡El mensaje contiene palabras no permitidas! Por favor, elimina cualquier grosería o contenido sensible.");
         }
         // --------------------------------
 
@@ -968,4 +977,3 @@
     });
 
   </script>
-
