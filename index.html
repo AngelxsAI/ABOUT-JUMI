@@ -3,9 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bienvenido a JUMI</title>
+  <title>Bienvenido a JUMI | Juventud Misionera</title>
+  
+  <meta name="description" content="JUMI: Un grupo juvenil católico dedicado a la fe, el amor y la unidad en Cristo.">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
   <style>
-    /* Fondo animado tipo aurora */
+    /* Estilos Generales y Colores JUMI */
+    :root {
+      --primary: #6a0dad; /* Morado JUMI */
+      --accent: #00bcd4; /* Celeste JUMI */
+      --text-light: #f4f4f9;
+      --shadow-color: rgba(106, 13, 173, 0.6);
+    }
+    
+    /* Fondo Elegante y Dinámico */
     body {
       margin: 0;
       height: 100vh;
@@ -14,139 +28,157 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(270deg, #001F3F, #003366, #004C99, #0066CC, #007FFF);
-      background-size: 1000% 1000%;
-      animation: fondo 20s ease infinite;
+      /* Gradiente más suave usando los colores JUMI */
+      background: linear-gradient(-45deg, var(--primary), #8f2fdc, #510a8d, #004C99);
+      background-size: 400% 400%;
+      animation: gradientShift 25s ease infinite;
       font-family: 'Poppins', sans-serif;
-      color: #fff;
+      color: var(--text-light);
       text-align: center;
+      transition: opacity 1s ease;
     }
 
-    @keyframes fondo {
+    @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    /* Mapa con colores animados */
-    .mapa {
+    /* Efecto "Cruz" o "Luz de Fe" - Mapa reemplazado por un patrón sutil */
+    .pattern-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg') center/contain no-repeat;
-      opacity: 0.1;
-      filter: hue-rotate(0deg);
-      animation: colores 20s linear infinite;
+      /* Patrón sutil (simulando una textura de tela o luz) */
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 30px 30px;
+      opacity: 0.5;
       z-index: -1;
+      animation: pulseOpacity 10s infinite alternate;
     }
 
-    @keyframes colores {
-      0% { filter: hue-rotate(0deg); }
-      50% { filter: hue-rotate(180deg); }
-      100% { filter: hue-rotate(360deg); }
+    @keyframes pulseOpacity {
+      0% { opacity: 0.3; }
+      100% { opacity: 0.6; }
     }
 
-    /* Texto principal */
+    /* Contenedor principal para centrar y aplicar efectos de sombra */
+    .content-container {
+        padding: 40px;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.05); /* Fondo semitransparente para destacar */
+        backdrop-filter: blur(5px);
+        box-shadow: 0 0 50px var(--shadow-color);
+        max-width: 90%;
+    }
+
+    /* Título Principal */
     h1 {
-      font-size: 1.8em;
-      max-width: 700px;
-      margin: 0 20px;
+      font-size: 2.8em;
+      font-weight: 800;
+      margin: 0;
+      letter-spacing: 5px;
+      text-transform: uppercase;
       opacity: 0;
-      animation: aparecer 2s ease forwards;
-      text-shadow: 0 0 15px #00ffff, 0 0 30px #00ccff;
+      animation: slideIn 1.5s ease-out forwards;
+      color: var(--text-light);
+      text-shadow: 0 0 10px var(--accent); /* Un ligero resplandor celeste */
     }
 
-    @keyframes aparecer {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes slideIn {
+      0% { opacity: 0; transform: translateY(-40px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* Subtítulo brillante */
-    .sub {
-      margin-top: 20px;
-      font-size: 2em;
-      font-weight: bold;
-      color: #00ffff;
-      text-shadow: 0 0 20px #00ffff, 0 0 40px #00ccff;
-      opacity: 0;
-      animation: glow 2s ease-in-out 1s forwards;
-    }
-
-    @keyframes glow {
-      0% { opacity: 0; transform: scale(0.9); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-
-    /* Botón */
-    #btn-avanzar {
-      margin-top: 40px;
-      padding: 12px 35px;
+    /* Subtítulo de bienvenida */
+    .welcome-message {
+      margin-top: 15px;
       font-size: 1.2em;
-      color: #fff;
-      background: linear-gradient(90deg, #00c6ff, #0072ff);
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
+      font-weight: 300;
       opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.8s ease;
-      box-shadow: 0 0 25px rgba(0, 150, 255, 0.7);
-      animation: boton 3s ease forwards 2s;
+      animation: fadeIn 2s ease forwards 1s;
+      color: #ccc;
     }
 
-    @keyframes boton {
-      to { opacity: 1; transform: translateY(0); }
+    /* Logo de la Cruz */
+    .cross-icon {
+        font-size: 3.5em;
+        color: var(--accent);
+        margin-bottom: 20px;
+        opacity: 0;
+        animation: crossGlow 2s ease forwards 0.5s;
+        text-shadow: 0 0 15px var(--accent), 0 0 30px var(--primary);
     }
 
-    #btn-avanzar:hover {
-      background: linear-gradient(90deg, #0072ff, #00c6ff);
-      transform: scale(1.05);
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    
+    @keyframes crossGlow {
+        0% { opacity: 0; transform: scale(0.8); }
+        100% { opacity: 1; transform: scale(1); }
     }
 
     /* Pie de página */
     footer {
       position: absolute;
-      bottom: 15px;
-      font-size: 0.9em;
-      color: #ccc;
+      bottom: 20px;
+      font-size: 0.85em;
+      font-weight: 300;
+      color: #999;
       opacity: 0;
-      animation: aparecer 2s ease forwards 3s;
+      animation: fadeIn 2s ease forwards 2.5s;
     }
 
     footer span {
-      color: #00ffff;
-      font-weight: bold;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Clase para iniciar la transición de salida */
+    .fade-out {
+        opacity: 0;
     }
   </style>
 </head>
 <body>
 
-  <div class="mapa"></div>
+  <div class="pattern-overlay"></div>
 
-  <h1>Bienvenido usuario, en esta web conocerás sobre Cristo.</h1>
-  <div class="sub">Bienvenido a JUMI</div>
-  
+  <div class="content-container">
+    <div class="cross-icon">
+        <i class="fas fa-cross"></i>
+    </div>
+    <h1 id="main-title">JUMI</h1>
+    <div class="welcome-message">
+        Juventud Misionera: Un camino de fe, amor y unidad en Cristo.
+    </div>
+  </div>
 
-  <footer>Desarrollado por <span>Angel</span></footer>
+  <footer>Desarrollado con amor por <span>Angel</span></footer>
 
   <script>
-    const boton = document.getElementById("btn-avanzar");
+    const REDIRECT_URL = "Html2.html";
+    const REDIRECT_DELAY_MS = 6000; // 6 segundos
 
-    // Redirige automáticamente después de 6 segundos
-    setTimeout(() => {
-      window.location.href = "Html2.html";
-    }, 6000);
+    document.addEventListener('DOMContentLoaded', () => {
+        const body = document.body;
 
-    // O manualmente con el botón
-    boton.onclick = () => {
-      boton.textContent = "Cargando...";
-      boton.disabled = true;
-      setTimeout(() => {
-        window.location.href = "Html2.html";
-      }, 1000);
-    };
+        // Establece la redirección automática
+        setTimeout(() => {
+            // Aplica una clase para un fade-out suave antes de redirigir
+            body.classList.add('fade-out');
+
+            // Pequeña pausa para que se vea el fade-out
+            setTimeout(() => {
+                window.location.href = REDIRECT_URL;
+            }, 1000); 
+
+        }, REDIRECT_DELAY_MS);
+    });
   </script>
 
 </body>
