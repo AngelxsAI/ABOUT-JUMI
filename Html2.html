@@ -4,8 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JUMI - Grupo Juvenil Católico</title>
-  <!-- Font Awesome para los iconos --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <!-- Enlace a la fuente Poppins --><link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,900;1,300&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,900;1,300&display=swap" rel="stylesheet">
   
   <style>
     /* VARIABLES DE COLOR */
@@ -397,8 +399,9 @@
   <header>
     <div class="header-content">
       <div class="logo">
-        <!-- Ícono de Cruz SVG Mejorado (Diseño Latin Cross más robusto) --><svg class="cruz-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 40 0 L 60 0 L 60 40 L 100 40 L 100 60 L 60 60 L 60 100 L 40 100 L 40 60 L 0 60 L 0 40 L 40 40 L 40 0 Z" fill="white"/>
+        
+        <svg class="cruz-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 40 0 L 60 0 L 60 40 L 100 40 L 100 60 L 60 60 L 60 100 L 40 100 L 40 60 L 0 60 L 0 40 L 0 40 L 40 40 L 40 0 Z" fill="white"/>
         </svg>
         <h1>JUMI</h1>
         <p class="header-subtitle">Grupo Juvenil Católico - Encuentra paz, amor y unidad en Cristo</p>
@@ -423,16 +426,19 @@
     </div>
   </nav>
 
-  <!-- Contenedor del Versículo (se llena con JS) --><div id="versiculo-del-dia"></div>
+  
+<div id="versiculo-del-dia"></div>
 
   <main>
-    <!-- SECCIÓN: Generador de Carteles de Inspiración --><section id="generador-inspiracion" class="section">
+    
+<section id="generador-inspiracion" class="section">
       <h2><i class="fas fa-paint-brush"></i> Generador de Carteles de Inspiración</h2>
-      <p>Escribe tu mensaje o reflexión. Generaremos un cartel con la imagen de Jesús y el enlace de JUMI, listo para compartir.</p>
+      <p>Escribe tu mensaje o reflexión. Se seleccionará una imagen aleatoria de Jesús, y se generará el cartel con tu mensaje y el enlace de JUMI, listo para compartir.</p>
       
       <div style="max-width: 600px; margin: 20px auto;">
         <textarea id="mensajeInput" placeholder="Escribe tu mensaje de fe o reflexión (ej. 'La alegría del Señor es nuestra fuerza.')..."></textarea>
-        <!-- Mensaje de error para el generador --><p id="error-message"></p>
+        
+        <p id="error-message"></p>
         <button id="generarCartelBtn" class="btn btn-primary" style="width: 100%;"><i class="fas fa-wand-magic-sparkles"></i> Generar Cartel</button>
       </div>
 
@@ -443,7 +449,8 @@
         <p style="font-size: 0.8em; margin-top: 10px; color: gray;">*El cartel incluye la foto, tu mensaje y el enlace de JUMI.</p>
       </div>
     </section>
-    <!-- FIN SECCIÓN GENERADOR --><section id="inicio" class="section">
+    
+<section id="inicio" class="section">
       <h2><i class="fas fa-cross"></i> Bienvenidos a JUMI</h2>
       <p>JUMI es un espacio creado para jóvenes que buscan crecer en su fe católica, compartir experiencias y formar una comunidad basada en los valores cristianos. Aquí encontrarás un ambiente de amor, respeto y fraternidad donde podrás desarrollar tu espiritualidad.</p>
       <p>Nuestro objetivo es fortalecer la relación con Dios a través de la oración, el estudio de la Biblia y el servicio comunitario. Te invitamos a unirte a nuestras actividades y ser parte de esta maravillosa familia espiritual.</p>
@@ -536,13 +543,82 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS --><script>
+  
+<script>
     // URL y constantes actualizadas
     const URL_JUMI = "https://about-jumi.vercel.app/";
-    const NOMBRE_IMAGEN_CARTEL = "Jesus.jpg"; 
+    
+    // Lista de imágenes disponibles y sus "zonas seguras" (porcentaje de la altura del canvas)
+    const IMAGENES_DISPONIBLES = [
+        { 
+            nombre: "Jesus2.jpg", // Nombre corregido
+            descripcion: "Jesús y la niña dibujando",
+            // Zona segura: Superior (el fondo amarillo es un buen lugar)
+            safeAreaTop: 0.05, 
+            safeAreaBottom: 0.50 
+        },
+        { 
+            nombre: "Jesus3.jpg", // Nombre corregido
+            descripcion: "Jesús y la niña caminando en el campo",
+            // Zona segura: Superior (el horizonte está a 2/3 de altura, texto encima)
+            safeAreaTop: 0.05, 
+            safeAreaBottom: 0.35 
+        },
+        { 
+            nombre: "1000030531.jpg", 
+            descripcion: "Jesús en el carro",
+            // Zona segura: Superior (evitando la parte central inferior donde está Jesús)
+            safeAreaTop: 0.05, 
+            safeAreaBottom: 0.50 
+        }
+    ];
+
+    // Lista de groserías para bloqueo (se buscarán en minúsculas y sin acentos)
+    const GROSERIAS_BLOQUEO = [
+        "mierda", "puta", "cabron", "cabrón", "coño", "joder", "gilipollas", 
+        "fuck", "shit", "asshole", "bitch", "bastard", "damn", "pendejo", "idiota",
+        "carajo", "verga", "chinga"
+    ];
 
     // Variable global para almacenar la imagen del cartel una vez cargada
     let cartelImage = null;
+    let imagenActual = IMAGENES_DISPONIBLES[0]; // Imagen por defecto
+
+    // Dimensiones del Canvas
+    const CARTEL_WIDTH = 800;
+    const CARTEL_HEIGHT = 600;
+    
+    // --- Utilidades ---
+    
+    function limpiarTexto(texto) {
+        // Convierte a minúsculas y quita acentos para una mejor detección de groserías
+        return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function contieneGroserias(texto) {
+        const textoLimpio = limpiarTexto(texto);
+        for (const groseria of GROSERIAS_BLOQUEO) {
+            // Usa una expresión regular para buscar la palabra completa (con límites de palabra)
+            const regex = new RegExp(`\\b${groseria}\\b`);
+            if (regex.test(textoLimpio)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function showError(message) {
+        const errorEl = document.getElementById('error-message');
+        errorEl.textContent = message;
+        errorEl.style.display = 'block';
+        document.getElementById('cartelContainer').style.display = 'none';
+        document.getElementById('compartirCartelBtn').style.display = 'none';
+        
+        setTimeout(() => {
+            errorEl.style.display = 'none';
+        }, 8000); 
+    }
+    // --- Fin Utilidades ---
 
     // Gestor del versículo diario
     const gestorVersiculo = {
@@ -572,7 +648,7 @@
         iniciar() {
           this.configurarEventos();
           this.cargarVersiculo();
-          this.precargarImagenCartel(); // Precarga la imagen de Jesús
+          this.precargarImagenCartel(); // Precarga la primera imagen (default)
           setInterval(() => this.cargarVersiculo(), 86400000); 
         },
 
@@ -660,16 +736,20 @@
         },
 
         precargarImagenCartel() {
+            // Selecciona una imagen aleatoria para precargarla
+            const indiceAleatorio = Math.floor(Math.random() * IMAGENES_DISPONIBLES.length);
+            imagenActual = IMAGENES_DISPONIBLES[indiceAleatorio];
+
             const img = new Image();
             img.crossOrigin = 'Anonymous'; 
-            img.src = NOMBRE_IMAGEN_CARTEL; 
+            img.src = imagenActual.nombre; 
 
             img.onload = () => {
                 cartelImage = img;
-                console.log(`Imagen del cartel (${NOMBRE_IMAGEN_CARTEL}) precargada con éxito.`);
+                console.log(`Imagen del cartel (${imagenActual.nombre}) precargada con éxito.`);
             };
             img.onerror = () => {
-                console.warn(`ADVERTENCIA: No se pudo precargar la imagen '${NOMBRE_IMAGEN_CARTEL}'. Se usará el fallback.`);
+                console.warn(`ADVERTENCIA: No se pudo precargar la imagen '${imagenActual.nombre}'. Se usará el fallback.`);
             };
         }
     };
@@ -692,19 +772,7 @@
     }
 
     // --- FUNCIONALIDAD: GENERADOR DE CARTELES CON CANVAS ---
-
-    const CARTEL_WIDTH = 800;
-    const CARTEL_HEIGHT = 600;
-
-    function showError(message) {
-        const errorEl = document.getElementById('error-message');
-        errorEl.textContent = message;
-        errorEl.style.display = 'block';
-        setTimeout(() => {
-            errorEl.style.display = 'none';
-        }, 5000);
-    }
-
+    
     function generarCartelInspiracion() {
         const mensaje = document.getElementById('mensajeInput').value.trim();
         const canvas = document.getElementById('cartelCanvas');
@@ -712,12 +780,21 @@
         const cartelContainer = document.getElementById('cartelContainer');
         const compartirBtn = document.getElementById('compartirCartelBtn');
         
-        // Ocultar mensaje de error
+        // Ocultar mensaje de error anterior
         document.getElementById('error-message').style.display = 'none';
         
         if (!mensaje) {
             return showError("¡El mensaje no puede estar vacío! Escribe algo de inspiración.");
         }
+        
+        // --- VALIDACIÓN DE GROSERÍAS ---
+        if (contieneGroserias(mensaje)) {
+            return showError("Haz utilizado una grosería, elimínala y publica la fotografía");
+        }
+        // --------------------------------
+
+        // 1. (Re)seleccionar y cargar la imagen aleatoria
+        gestorVersiculo.precargarImagenCartel(); // Esto establece una nueva imagenActual y carga la imagen.
 
         // Configurar dimensiones del canvas
         canvas.width = CARTEL_WIDTH;
@@ -726,7 +803,7 @@
         // Limpiar canvas
         ctx.clearRect(0, 0, CARTEL_WIDTH, CARTEL_HEIGHT);
 
-        // 1. Dibujar la Imagen (o Fallback)
+        // 2. Dibujar la Imagen (o Fallback)
         let imgToDraw = cartelImage;
 
         if (imgToDraw && imgToDraw.complete) {
@@ -749,25 +826,21 @@
             ctx.textAlign = 'center';
             ctx.font = '300 24px Poppins';
             ctx.fillText("¡FOTO NO ENCONTRADA!", CARTEL_WIDTH / 2, 50);
-            showError("La imagen 'Jesus.jpg' no se encontró o no se pudo cargar. Se usó un fondo de color sólido.");
+            showError(`La imagen '${imagenActual.nombre}' no se encontró o no se pudo cargar. Se usó un fondo de color sólido.`);
         }
 
-        // 2. Dibujar el Mensaje (Texto del usuario)
+        // 3. Dibujar el Mensaje (Texto del usuario)
         ctx.fillStyle = 'white';
         ctx.textAlign = 'center';
         ctx.strokeStyle = 'rgba(0, 0, 0, 0.8)'; // Sombra/borde del texto
         ctx.lineWidth = 2;
         
-        // Definir el área "segura" para el texto (evitando la parte inferior-central de Jesús)
-        // Estimación: Jesús ocupa aproximadamente el 40% del ancho centrado y 50% de la altura desde abajo
-        const safeAreaLeft = CARTEL_WIDTH * 0.3;
-        const safeAreaRight = CARTEL_WIDTH * 0.7;
-        const safeAreaTop = CARTEL_HEIGHT * 0.05; // Margen superior
-        const safeAreaBottom = CARTEL_HEIGHT * 0.5; // Jesús ocupa la mitad inferior de la imagen
+        // Obtener zona segura dinámica
+        const safeAreaTop = CARTEL_HEIGHT * imagenActual.safeAreaTop;
+        const safeAreaBottom = CARTEL_HEIGHT * imagenActual.safeAreaBottom;
 
         const maxTextWidth = CARTEL_WIDTH - 100; // Ancho máximo general
 
-        // Intentaremos colocar el texto en la mitad superior primero
         let currentFontSize = 48; // Tamaño inicial de fuente
         let lineHeight = currentFontSize * 1.2; // Altura de línea basada en la fuente
         let lines = [];
@@ -791,30 +864,29 @@
             return tempLines;
         };
 
-        // Reducir el tamaño de la fuente si el texto es muy largo
+        // Reducir el tamaño de la fuente si el texto es muy largo para la zona segura
         do {
             lines = calculateLines(mensaje, currentFontSize);
             lineHeight = currentFontSize * 1.2;
             const totalTextHeight = lines.length * lineHeight;
 
-            // Si el texto cabe en la mitad superior
-            if (totalTextHeight < (safeAreaBottom - safeAreaTop - lineHeight)) { // Restamos una lineHeight para un poco de espacio
+            // Si el texto cabe en la zona segura
+            if (totalTextHeight < (safeAreaBottom - safeAreaTop - (lineHeight * 0.5))) { 
                 break; // El texto cabe, salimos del bucle
             }
             currentFontSize -= 2; // Reduce el tamaño de la fuente
         } while (currentFontSize >= 24); // Límite inferior para la fuente
 
-        // Si incluso con la fuente más pequeña sigue siendo demasiado largo, lo centramos arriba y que ocupe más altura
+        // Si incluso con la fuente más pequeña sigue siendo demasiado largo, lo dejamos en el mínimo
         if (currentFontSize < 24) {
-            currentFontSize = 24; // Aseguramos un mínimo
+            currentFontSize = 24; 
             lineHeight = currentFontSize * 1.2;
-            lines = calculateLines(mensaje, currentFontSize); // Recalculamos con el mínimo
+            lines = calculateLines(mensaje, currentFontSize); 
         }
-
 
         // Calcular posición inicial Y para centrar el texto verticalmente en la zona segura superior
         const totalTextHeight = lines.length * lineHeight;
-        let startY = safeAreaTop + (safeAreaBottom - safeAreaTop - totalTextHeight) / 2 + (lineHeight * 0.8); // Ajuste fino
+        let startY = safeAreaTop + (safeAreaBottom - safeAreaTop - totalTextHeight) / 2 + (lineHeight * 0.8);
 
 
         ctx.font = `700 ${currentFontSize}px Poppins`;
@@ -827,7 +899,7 @@
         });
 
 
-        // 3. Dibujar el Enlace de Atribución (pequeño en la esquina)
+        // 4. Dibujar el Enlace de Atribución (pequeño en la esquina inferior derecha)
         ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
         ctx.textAlign = 'right';
         ctx.font = '200 18px Poppins';
