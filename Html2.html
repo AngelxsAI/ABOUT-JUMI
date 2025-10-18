@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JUMI - Grupo Juvenil Católico</title>
+  <!-- Font Awesome para los iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Enlace a la fuente Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
   
   <style>
@@ -15,7 +17,7 @@
       --secondary: #000;
       --background: #f8f8ff;
       --text-color: #333;
-      --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
       --transition: all 0.3s ease;
     }
 
@@ -41,10 +43,10 @@
 
     /* HEADER */
     header {
-      background: linear-gradient(90deg, var(--primary), var(--accent));
+      background: linear-gradient(135deg, var(--primary), #8f2fdc);
       color: white;
-      padding: 15px 20px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      padding: 25px 20px; /* Aumentado el padding para el SVG */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       text-align: center;
     }
     .logo {
@@ -53,19 +55,22 @@
       align-items: center;
     }
     .cruz-icon {
-      width: 35px;
-      height: 35px;
-      margin-bottom: 5px;
+      /* Estilos para el SVG */
+      width: 60px; /* Tamaño de la cruz aumentado */
+      height: 60px;
+      fill: white;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); /* Pequeño brillo */
     }
     header h1 {
-      font-size: 1.8rem;
+      font-size: 2.5rem; /* Título más grande */
       font-weight: 900;
-      letter-spacing: 1px;
+      letter-spacing: 3px;
     }
     .header-subtitle {
-      font-size: 0.8rem;
+      font-size: 1rem;
       opacity: 0.9;
-      margin-top: 3px;
+      margin-top: 5px;
     }
 
     /* NAVEGACIÓN */
@@ -74,7 +79,7 @@
       top: 0;
       z-index: 1000;
       background-color: white;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
     .nav-container {
       max-width: 1200px;
@@ -90,16 +95,17 @@
     }
     .nav-links li a {
       color: var(--primary);
-      padding: 8px 15px;
+      padding: 10px 18px;
       display: block;
       font-weight: 600;
-      border-radius: 20px;
+      border-radius: 25px;
       transition: var(--transition);
-      font-size: 0.9em;
+      font-size: 0.95em;
     }
     .nav-links li a:hover {
       background-color: var(--accent);
       color: white;
+      transform: translateY(-2px);
     }
     .mobile-menu-btn {
       display: none;
@@ -107,18 +113,21 @@
       border: none;
       color: var(--primary);
       font-size: 1.5rem;
-      padding: 10px 15px;
+      padding: 15px;
       cursor: pointer;
+      width: 100%;
+      text-align: left;
     }
 
     /* VERSÍCULO DEL DÍA */
     #versiculo-del-dia {
       background: linear-gradient(135deg, var(--accent), #7deaf9);
       color: white;
-      padding: 20px 15px;
+      padding: 25px 15px;
       text-align: center;
       box-shadow: var(--shadow);
-      margin: 20px 0;
+      margin: 25px 0;
+      border-radius: 15px;
     }
     .contenido-verso {
       max-width: 800px;
@@ -126,35 +135,38 @@
     }
     .texto-verso {
       font-style: italic;
-      font-size: 1.15rem;
-      margin-bottom: 10px;
+      font-size: 1.25rem;
+      margin-bottom: 15px;
+      font-weight: 500;
     }
     .referencia-verso {
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 1rem;
       opacity: 0.9;
     }
     .botones-compartir {
-      margin-top: 15px;
+      margin-top: 20px;
       display: flex;
       justify-content: center;
-      gap: 10px;
+      gap: 15px;
     }
     .btn-compartir {
       background-color: var(--primary);
       color: white;
       border: none;
-      padding: 8px 15px;
-      border-radius: 5px;
+      padding: 10px 20px;
+      border-radius: 25px;
       cursor: pointer;
       font-weight: 600;
       transition: var(--transition);
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 8px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
     }
     .btn-compartir:hover {
       background-color: #510a8d;
+      transform: translateY(-2px);
     }
 
     /* SECCIONES GENERALES */
@@ -165,11 +177,11 @@
     }
     .section {
       background-color: white;
-      padding: 30px;
-      margin-bottom: 30px;
+      padding: 35px;
+      margin-bottom: 35px;
       border-radius: 12px;
       box-shadow: var(--shadow);
-      opacity: 0; /* Inicialmente oculto para la animación */
+      opacity: 0; 
       transform: translateY(20px);
       transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
@@ -179,10 +191,10 @@
     }
     .section h2 {
       color: var(--primary);
-      margin-bottom: 20px;
-      border-bottom: 2px solid var(--accent);
+      margin-bottom: 25px;
+      border-bottom: 3px solid var(--accent);
       padding-bottom: 10px;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
     }
 
     /* BOTONES GRUPO */
@@ -190,11 +202,11 @@
       margin-top: 20px;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 15px;
       justify-content: center;
     }
     .btn {
-      padding: 10px 20px;
+      padding: 12px 25px;
       border-radius: 50px;
       font-weight: 700;
       text-transform: uppercase;
@@ -202,6 +214,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
     }
     .btn-primary {
       background-color: var(--primary);
@@ -211,6 +224,7 @@
     .btn-primary:hover {
       background-color: var(--accent);
       border-color: var(--accent);
+      transform: scale(1.05);
     }
     .btn-secondary {
       background-color: transparent;
@@ -222,77 +236,85 @@
       color: white;
     }
 
-    /* SECCIÓN COMPARTIR NOTICIA */
-    #compartir-noticia {
+    /* GENERADOR DE INSPIRACIÓN */
+    #generador-inspiracion {
         text-align: center;
         background-color: #e3f2fd; /* Fondo azul claro */
     }
-    #noticia-texto {
-        resize: vertical;
+    #mensajeInput {
+        width: 100%;
+        min-height: 120px;
+        padding: 15px;
         border: 2px solid var(--accent);
+        border-radius: 8px;
+        margin-bottom: 20px;
         transition: border-color 0.3s;
+        font-size: 1rem;
+        resize: vertical;
     }
-    #noticia-texto:focus {
+    #mensajeInput:focus {
         border-color: var(--primary);
+        outline: none;
     }
-    #btnCompartirNoticia {
-        background: linear-gradient(90deg, var(--accent), var(--primary));
+    #cartelContainer {
+        margin-top: 30px;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        display: none; /* Oculto por defecto */
+    }
+    #cartelCanvas {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: block;
+        margin: 0 auto;
+    }
+    #compartirCartelBtn {
+        margin-top: 15px;
+        background: linear-gradient(90deg, #ffc107, #ff9800);
+        color: var(--secondary);
         border: none;
     }
-    #btnCompartirNoticia:hover {
-        background: linear-gradient(90deg, var(--primary), var(--accent));
-        transform: translateY(-2px);
+    #compartirCartelBtn:hover {
+        background: linear-gradient(90deg, #ff9800, #ffc107);
+        color: var(--secondary);
     }
 
     /* LISTA DE MIEMBROS */
     .members-list {
       list-style: none;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      gap: 10px;
-      margin-top: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
       padding: 0;
       text-align: center;
     }
     .members-list li {
       background-color: #f8f8f8;
-      padding: 8px;
-      border-radius: 5px;
+      padding: 12px;
+      border-radius: 8px;
       font-weight: 600;
       color: var(--primary);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s;
+    }
+    .members-list li:hover {
+        transform: translateY(-3px);
     }
 
-    /* GALERÍA */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-    .image-container {
-      overflow: hidden;
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-    }
-    .image-container img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.3s;
-    }
-    .image-container img:hover {
-      transform: scale(1.05);
-    }
-
-    /* IFRAMES Y MAPAS */
+    /* OTROS ESTILOS DE SECCIÓN (Gallery, Iframes) */
     iframe {
       width: 100%;
       height: 100%;
       border: 0;
       border-radius: 8px;
     }
-    .calendar-container, #ubicacion > div:nth-of-type(1) {
+    .calendar-container, .map-container {
       height: 400px;
       margin-top: 20px;
     }
@@ -301,25 +323,25 @@
     footer {
       background-color: var(--primary);
       color: white;
-      padding: 20px;
+      padding: 25px;
       text-align: center;
       border-top: 5px solid var(--accent);
     }
     .social-links {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
     .social-links a {
       color: white;
-      font-size: 1.5rem;
-      margin: 0 10px;
+      font-size: 1.8rem;
+      margin: 0 12px;
       transition: var(--transition);
     }
     .social-links a:hover {
       color: var(--accent);
-      transform: scale(1.1);
+      transform: scale(1.2);
     }
     .copyright {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       margin: 5px 0;
     }
 
@@ -344,8 +366,6 @@
         }
         .mobile-menu-btn {
             display: block;
-            width: 100%;
-            text-align: left;
         }
         .btn-group {
             justify-content: space-around;
@@ -354,6 +374,10 @@
             width: 48%;
             text-align: center;
             justify-content: center;
+            font-size: 0.85rem;
+        }
+        header h1 {
+            font-size: 1.8rem;
         }
     }
   </style>
@@ -362,7 +386,10 @@
   <header>
     <div class="header-content">
       <div class="logo">
-        <img src="CRUZ.jpg" alt="cruz" class="cruz-icon">
+        <!-- Ícono de Cruz SVG Mejorado (Diseño Latin Cross más robusto) -->
+        <svg class="cruz-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 40 0 L 60 0 L 60 40 L 100 40 L 100 60 L 60 60 L 60 100 L 40 100 L 40 60 L 0 60 L 0 40 L 40 40 L 40 0 Z" fill="white"/>
+        </svg>
         <h1>JUMI</h1>
         <p class="header-subtitle">Grupo Juvenil Católico - Encuentra paz, amor y unidad en Cristo</p>
       </div>
@@ -377,28 +404,38 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
         <li><a href="#nosotros"><i class="fas fa-users"></i> Sobre Nosotros</a></li>
-        <li><a href="#informacion"><i class="fas fa-info-circle"></i> Info</a></li>
+        <li><a href="#generador-inspiracion"><i class="fas fa-magic"></i> Cartel</a></li>
         <li><a href="#miembros"><i class="fas fa-user-friends"></i> Miembros</a></li>
-        <li><a href="#"><i class="fas fa-images"></i> </a></li>
+        <!-- Sección Álbum Eliminada -->
         <li><a href="#eventos"><i class="fas fa-calendar-alt"></i> Eventos</a></li>
         <li><a href="#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a></li>
       </ul>
     </div>
   </nav>
 
+  <!-- Contenedor del Versículo (se llena con JS) -->
   <div id="versiculo-del-dia"></div>
 
   <main>
-    <section id="compartir-noticia" class="section">
-      <h2><i class="fas fa-bullhorn"></i> Comparte una Noticia del Grupo</h2>
-      <p>Envía un mensaje a tus contactos con una foto, un versículo de reflexión y el enlace de JUMI.</p>
+    <!-- SECCIÓN: Generador de Carteles de Inspiración -->
+    <section id="generador-inspiracion" class="section">
+      <h2><i class="fas fa-paint-brush"></i> Generador de Carteles de Inspiración</h2>
+      <p>Escribe tu mensaje o reflexión. Generaremos un cartel con la imagen de Jesús y el enlace de JUMI, listo para compartir.</p>
       
-      <div class="input-group" style="max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
-        <textarea id="noticia-texto" placeholder="Escribe tu mensaje para la comunidad (ej. ¡Tuvimos un gran retiro!)..." style="width: 100%; min-height: 100px; padding: 10px; border-radius: 5px; margin-bottom: 10px;"></textarea>
-        <button id="btnCompartirNoticia" class="btn btn-primary" style="width: 100%;"><i class="fas fa-share-alt"></i> Compartir Noticia, y Versículo</button>
-        <p style="font-size: 0.8em; margin-top: 10px; color: gray;"></p>
+      <div style="max-width: 600px; margin: 20px auto;">
+        <textarea id="mensajeInput" placeholder="Escribe tu mensaje de fe o reflexión (ej. 'La alegría del Señor es nuestra fuerza.')..."></textarea>
+        <button id="generarCartelBtn" class="btn btn-primary" style="width: 100%;"><i class="fas fa-wand-magic-sparkles"></i> Generar Cartel</button>
+      </div>
+
+      <div id="cartelContainer">
+        <h3>Vista Previa del Cartel</h3>
+        <canvas id="cartelCanvas"></canvas>
+        <button id="compartirCartelBtn" class="btn btn-primary" style="width: 100%; display: none;"><i class="fas fa-share-alt"></i> Compartir Cartel</button>
+        <p style="font-size: 0.8em; margin-top: 10px; color: gray;">*El cartel incluye la foto, tu mensaje y el enlace de JUMI.</p>
       </div>
     </section>
+    <!-- FIN SECCIÓN GENERADOR -->
+
     <section id="inicio" class="section">
       <h2><i class="fas fa-cross"></i> Bienvenidos a JUMI</h2>
       <p>JUMI es un espacio creado para jóvenes que buscan crecer en su fe católica, compartir experiencias y formar una comunidad basada en los valores cristianos. Aquí encontrarás un ambiente de amor, respeto y fraternidad donde podrás desarrollar tu espiritualidad.</p>
@@ -416,30 +453,6 @@
       <p>JUMI (Juventud Misionera) es un grupo católico juvenil dedicado a la formación espiritual de sus miembros. Nuestro nombre refleja nuestra devoción a la Virgen María y nuestro compromiso con la unidad en Cristo.</p>
       <p>Fundado en 2007 nuestro grupo ha crecido gracias al trabajo comprometido de jóvenes que comparten el deseo de profundizar en su fe y servir a la comunidad. Organizamos retiros espirituales, charlas formativas, actividades recreativas y proyectos de servicio social.</p>
       <p>Nuestro lema es "Juventud Misionera, Mas Alla De Las Fronteras", y bajo esta premisa buscamos crear un espacio inclusivo donde todos los jóvenes, sin importar su nivel de conocimiento religioso, puedan sentirse acogidos y acompañados en su camino de fe.</p>
-    </section>
-
-    <section id="informacion" class="section">
-      <h2><i class="fas fa-info-circle"></i> Información</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
-        <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-          <h3 style="color: var(--primary); margin-bottom: 0.5rem;"><i class="fas fa-clock"></i> Horario</h3>
-          <p>Reuniones semanales: Domingo de 3:00 PM a 5:00 PM</p>
-          <p>Misas especiales: Domingos 10:00 AM</p>
-        </div>
-
-        <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-          <h3 style="color: var(--primary); margin-bottom: 0.5rem;"><i class="fas fa-user-plus"></i> Requisitos</h3>
-          <p>Edad mínima: 14 años</p>
-          <p>Deseo de crecer espiritualmente</p>
-          <p>Compromiso con los valores catolicos </p>
-        </div>
-
-        <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-          <h3 style="color: var(--primary); margin-bottom: 0.5rem;"><i class="fas fa-calendar-check"></i> Actividades</h3>
-          <p>Oración comunitaria | Estudio bíblico | Servicio comunitario</p>
-          <p>Retiros espirituales | Visitas a enfermos</p>
-        </div>
-      </div>
     </section>
 
     <section id="miembros" class="section">
@@ -464,19 +477,16 @@
         <li>Mauricio</li>
         <li>Katty</li>
         <li>Jasmin</li>
-        <li>Nicol</li>
-        <li>Se Parte De Nosotros</li>
       </ul>
 
       <p style="margin-top: 1.5rem; font-style: italic;">"Porque donde dos o tres se reúnen en mi nombre, allí estoy yo en medio de ellos." - Mateo 18:20</p>
     </section>
 
+    <!-- La sección Álbum Fotográfico ha sido eliminada. -->
 
     <section id="eventos" class="section">
       <h2><i class="fas fa-calendar-alt"></i> Próximos Eventos</h2>
       <p>Mantente informado sobre nuestras próximas actividades. ¡Te esperamos con alegría!</p>
-
-      <ul id="lista-eventos" style="margin-top: 1.5rem; list-style: none;"></ul>
 
       <div class="calendar-container">
         <iframe 
@@ -507,76 +517,6 @@
         </a>
       </div>
     </section>
-
-    <section class="download-section section">
-      <h2><i class="fas fa-bible"></i> Recursos Espirituales</h2>
-
-      <div class="download-card">
-        <h3>Santa Biblia - Versión Reina Valera</h3>
-        <button onclick="window.open('https://www.bible.com/es/versions/149-rvr1960-biblia-reina-valera-1960', '_blank')" class="btn btn-primary" style="margin-top: 10px; display: inline-flex;">
-          <i class="fas fa-book"></i> Leer Santa Biblia
-        </button>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
-        <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
-          <h3 style="margin-bottom: 0.5rem; color: var(--accent);"><i class="fas fa-mobile-alt"></i> App Santa Biblia</h3>
-          <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 15px;">
-            <a href="https://apps.apple.com/us/app/bible/id282935706" target="_blank" class="btn" style="background-color: #000; color: white;">
-              <i class="fab fa-apple"></i> App Store
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=com.sirma.mobile.bible.android" target="_blank" class="btn" style="background-color: #488aec; color: white;">
-              <i class="fab fa-google-play"></i> Play Store
-            </a>
-          </div>
-        </div>
-
-        <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
-          <h3 style="margin-bottom: 0.5rem; color: var(--accent);"><i class="fas fa-book-open"></i> Catecismo</h3>
-          <button onclick="window.open('https://www.vatican.va/archive/catechism_sp/index_sp.html', '_blank')" class="btn btn-primary" style="margin-top: 15px; width: 100%;">
-            <i class="fas fa-download"></i> Leer
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" style="text-align: center;">
-      <h2><i class="fas fa-praying-hands"></i> Oración Comunitaria</h2>
-      <p style="max-width: 800px; margin: 0 auto 1.5rem;">"La oración es el oxígeno del alma" - San Pío de Pietrelcina</p>
-
-      <div id="oracion-box" style="background-color: #f0f0f0; padding: 2rem; border-radius: 8px; margin-top: 1.5rem; box-shadow: var(--shadow);">
-        <h3 style="color: var(--primary); margin-bottom: 1rem;">Oración por las necesidades del grupo</h3>
-        <p id="oracion-text" style="font-style: italic; margin-bottom: 1rem;">
-          "Señor Jesús, te pedimos por cada miembro de nuestra comunidad JUMI. Bendice nuestros esfuerzos por crecer en santidad, fortalece nuestros lazos de amistad y guíanos en el servicio a los demás. Que María, nuestra Madre, nos acompañe siempre en este camino de fe. Amén."
-        </p>
-
-        <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem;">
-          <button onclick="compartirOracion()" class="btn btn-primary" style="padding: 0.6rem 1.2rem;">
-            <i class="fas fa-share-alt"></i> Compartir
-          </button>
-          <button onclick="guardarOracion()" class="btn" style="background-color: #ccc; color: var(--text-color); padding: 0.6rem 1.2rem;">
-            <i class="fas fa-bookmark"></i> Guardar
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" style="text-align: center;">
-      <h2><i class="fas fa-hands-helping"></i> Únete a Nuestra Comunidad</h2>
-      <p>Sigue nuestras redes sociales y mantente conectado con JUMI</p>
-
-      <div class="btn-group">
-        <a href="https://www.instagram.com/angelxszgigi/" class="btn btn-secondary" target="_blank">
-          <i class="fab fa-instagram"></i> Instagram Personal
-        </a>
-        <a href="https://www.instagram.com/jumi_medalla.milagrosa?igsh=MXVsdmV0ZTR2bW40ZA==" class="btn btn-secondary" target="_blank">
-          <i class="fab fa-instagram"></i> Instagram JUMI
-        </a>
-        <a href="https://whatsapp.com/channel/0029Vb5M9qLAu3aRABUHvq3q" class="btn btn-primary" target="_blank">
-          <i class="fab fa-whatsapp"></i> Canal WhatsApp
-        </a>
-      </div>
-    </section>
   </main>
 
   <footer>
@@ -591,10 +531,11 @@
     </div>
   </footer>
 
+  <!-- SCRIPTS -->
   <script>
     // URL y constantes actualizadas
-    const URL_JUMI = "https://about-jumi-b95z.vercel.app/";
-    const NOMBRE_IMAGEN_COMPARTIR = "jumi-caravana.jpg"; // Renombrado de 1000030126.jpg
+    const URL_JUMI = "https://about-jumi.vercel.app/";
+    const NOMBRE_IMAGEN_CARTEL = "Jesus.jpg"; 
 
     // Gestor del versículo diario
     const gestorVersiculo = {
@@ -620,10 +561,6 @@
             referencia: "Mateo 18:20"
           }
         ],
-        versiculoAdicionalCompartir: {
-            texto: "Amarás a tu prójimo como a ti mismo.",
-            referencia: "Marcos 12:31"
-        },
 
         iniciar() {
           this.configurarEventos();
@@ -641,7 +578,7 @@
           document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
               e.preventDefault();
-              document.getElementById('navLinks').classList.remove('active'); // Ocultar menú en móvil
+              document.getElementById('navLinks').classList.remove('active'); 
               const target = document.querySelector(this.getAttribute('href'));
               if (target) {
                  window.scrollTo({
@@ -652,21 +589,25 @@
             });
           });
           
-          // Evento para la nueva función de compartir noticia
-          const btnCompartirNoticia = document.getElementById('btnCompartirNoticia');
-          if (btnCompartirNoticia) {
-              btnCompartirNoticia.addEventListener('click', compartirNoticia);
+          // Evento para el generador de carteles
+          const btnGenerarCartel = document.getElementById('generarCartelBtn');
+          if (btnGenerarCartel) {
+              btnGenerarCartel.addEventListener('click', generarCartelInspiracion);
+          }
+
+          // Evento para compartir el cartel generado
+          const btnCompartirCartel = document.getElementById('compartirCartelBtn');
+          if (btnCompartirCartel) {
+              btnCompartirCartel.addEventListener('click', compartirCartel);
           }
         },
 
         async cargarVersiculo() {
           try {
-            // Intenta obtener el versículo de la API (en español, RVR1960)
             const respuesta = await fetch('https://beta.ourmanna.com/api/v1/get/?format=json&version=RVR1960');
             if (!respuesta.ok) throw new Error('Error al obtener el versículo de la API');
             const data = await respuesta.json();
             
-            // Filtro para asegurar que el versículo no esté en inglés (a veces la API falla)
             const texto = data.verse.details.text;
             if (texto && !/you|your|the|is|of|and|but/i.test(texto)) {
                 this.mostrarVersiculo(data.verse.details.text, data.verse.details.reference);
@@ -674,6 +615,7 @@
                 throw new Error('Versículo de la API no es válido o está en inglés');
             }
           } catch (error) {
+            console.error("Usando versículo local:", error.message);
             this.usarVersiculoLocal();
           }
         },
@@ -710,7 +652,7 @@
         }
     };
 
-    // Función para compartir el Versículo del Día (usa navigator.share y fallback a WhatsApp)
+    // Función para compartir el Versículo del Día 
     function compartirVersiculo() {
         const texto = document.querySelector('.texto-verso').textContent;
         const referencia = document.querySelector('.referencia-verso').textContent;
@@ -722,74 +664,174 @@
             text: textoFinal
           }).catch(error => console.log('Error al compartir:', error));
         } else {
-            // Fallback para navegadores sin navigator.share
             const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(textoFinal)}`;
             window.open(whatsappUrl, '_blank');
         }
     }
 
-    // FUNCIÓN PRINCIPAL: Compartir Noticia con Imagen y Versículo
-    async function compartirNoticia() {
-        const textoNoticia = document.getElementById('noticia-texto').value;
+    // --- FUNCIONALIDAD: GENERADOR DE CARTELES CON CANVAS ---
+
+    const CARTEL_WIDTH = 800;
+    const CARTEL_HEIGHT = 600;
+
+    function wrapText(context, text, x, y, maxWidth, lineHeight) {
+        const words = text.split(' ');
+        let line = '';
+        let currentY = y;
+
+        for(let n = 0; n < words.length; n++) {
+            const testLine = line + words[n] + ' ';
+            const metrics = context.measureText(testLine);
+            const testWidth = metrics.width;
+            
+            if (testWidth > maxWidth && n > 0) {
+                context.fillText(line, x, currentY);
+                line = words[n] + ' ';
+                currentY += lineHeight;
+            } else {
+                line = testLine;
+            }
+        }
+        context.fillText(line, x, currentY);
+        return currentY; // Retorna la altura final para cálculos
+    }
+
+    function generarCartelInspiracion() {
+        const mensaje = document.getElementById('mensajeInput').value.trim();
+        const canvas = document.getElementById('cartelCanvas');
+        const ctx = canvas.getContext('2d');
+        const cartelContainer = document.getElementById('cartelContainer');
+        const compartirBtn = document.getElementById('compartirCartelBtn');
         
-        if (!textoNoticia.trim()) {
-            return alert("Por favor, escribe un mensaje antes de compartir.");
+        if (!mensaje) {
+            return alert("Por favor, escribe un mensaje de inspiración antes de generar el cartel.");
         }
 
-        const { texto, referencia } = gestorVersiculo.versiculoAdicionalCompartir;
+        // Configurar dimensiones del canvas
+        canvas.width = CARTEL_WIDTH;
+        canvas.height = CARTEL_HEIGHT;
 
-        // 1. Construir el texto final
-        const textoFinal = 
-            `${textoNoticia.trim()}\n\n` + 
-            `🙏 Reflexión Adicional:\n"${texto}" - ${referencia}\n\n` +
-            `---\n` +
-            `Hecho por Angel para JUMI: ${URL_JUMI}`;
+        const img = new Image();
+        img.crossOrigin = 'Anonymous'; // Necesario para evitar problemas de CORS si la imagen viene de otro dominio
+        img.src = NOMBRE_IMAGEN_CARTEL; // Jesus.jpg
 
-        const shareData = {
-            title: "📢 Noticia de JUMI",
-            text: textoFinal,
-            url: URL_JUMI,
-            files: [Jesus.jpg]
+        img.onload = () => {
+            // 1. Dibujar la Imagen (como fondo)
+            // Escalar la imagen para que cubra todo el canvas (aspecto "cover")
+            const scale = Math.max(CARTEL_WIDTH / img.width, CARTEL_HEIGHT / img.height);
+            const x = (CARTEL_WIDTH / 2) - (img.width / 2) * scale;
+            const y = (CARTEL_HEIGHT / 2) - (img.height / 2) * scale;
+            ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+
+            // 2. Aplicar un gradiente/capa semi-transparente para mejorar el contraste del texto
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.4)'; // Negro semi-transparente
+            ctx.fillRect(0, 0, CARTEL_WIDTH, CARTEL_HEIGHT);
+
+            // 3. Dibujar el Mensaje (Texto del usuario)
+            ctx.fillStyle = 'white';
+            ctx.textAlign = 'center';
+            ctx.font = '700 48px Poppins';
+            const lineHeight = 60;
+            const maxWidth = CARTEL_WIDTH - 100;
+            const xPos = CARTEL_WIDTH / 2;
+            let startY = CARTEL_HEIGHT / 2 - (Math.floor(mensaje.length / 20) * (lineHeight / 2)); // Centrado vertical aproximado
+
+            // Dibuja la sombra (stroke) del texto para mejor legibilidad
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.8)';
+            ctx.lineWidth = 2;
+            ctx.font = '700 48px Poppins';
+            
+            // Usamos un loop para el stroke y fill
+            const words = mensaje.split(' ');
+            let line = '';
+            let currentY = startY;
+
+            for(let n = 0; n < words.length; n++) {
+                const testLine = line + words[n] + ' ';
+                const metrics = ctx.measureText(testLine);
+                const testWidth = metrics.width;
+                
+                if (testWidth > maxWidth && n > 0) {
+                    ctx.strokeText(line, xPos, currentY);
+                    ctx.fillText(line, xPos, currentY);
+                    line = words[n] + ' ';
+                    currentY += lineHeight;
+                } else {
+                    line = testLine;
+                }
+            }
+            ctx.strokeText(line, xPos, currentY);
+            ctx.fillText(line, xPos, currentY);
+
+            // 4. Dibujar el Enlace de Atribución (pequeño en la esquina)
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.textAlign = 'right';
+            ctx.font = '200 18px Poppins';
+            ctx.fillText(`Visítanos: ${URL_JUMI}`, CARTEL_WIDTH - 20, CARTEL_HEIGHT - 20);
+
+            // Mostrar el cartel y el botón de compartir
+            cartelContainer.style.display = 'block';
+            compartirBtn.style.display = 'block';
         };
 
-        try {
-            // 2. Cargar y adjuntar la imagen local
-            const response = await fetch(NOMBRE_IMAGEN_COMPARTIR);
-            if (!response.ok) throw new Error("No se pudo cargar la imagen local.");
-
-            const blob = await response.blob();
-            const file = new File([blob], NOMBRE_IMAGEN_COMPARTIR, { type: 'image/jpeg' });
-            shareData.files.push(file);
+        img.onerror = () => {
+             // Fallback si la imagen no se encuentra
+            ctx.fillStyle = '#6a0dad';
+            ctx.fillRect(0, 0, CARTEL_WIDTH, CARTEL_HEIGHT);
             
-            // 3. Compartir con imagen
+            ctx.fillStyle = 'white';
+            ctx.textAlign = 'center';
+            ctx.font = '700 36px Poppins';
+            wrapText(ctx, mensaje, CARTEL_WIDTH / 2, CARTEL_HEIGHT / 3, CARTEL_WIDTH - 80, 50);
+
+            ctx.font = '300 24px Poppins';
+            ctx.fillText("¡Carga la imagen 'Jesus.jpg' para el fondo!", CARTEL_WIDTH / 2, CARTEL_HEIGHT - 100);
+
+            ctx.font = '200 18px Poppins';
+            ctx.fillText(`Visítanos: ${URL_JUMI}`, CARTEL_WIDTH - 20, CARTEL_HEIGHT - 20);
+
+            cartelContainer.style.display = 'block';
+            compartirBtn.style.display = 'block';
+            console.warn("ADVERTENCIA: No se pudo cargar la imagen 'Jesus.jpg'. Se generó un cartel con fondo plano.");
+        };
+    }
+
+    // Función para compartir la imagen del canvas
+    async function compartirCartel() {
+        const canvas = document.getElementById('cartelCanvas');
+        const mensaje = document.getElementById('mensajeInput').value.trim();
+
+        try {
+            // Convertir el Canvas a Blob
+            const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.9));
+            if (!blob) throw new Error("Fallo al crear el Blob de la imagen.");
+
+            const file = new File([blob], "Cartel_JUMI.jpg", { type: 'image/jpeg' });
+            
+            const shareData = {
+                title: "Inspiración JUMI",
+                text: `¡Mira mi mensaje de fe!\n\n${mensaje}\n\nConoce JUMI: ${URL_JUMI}`,
+                files: [file]
+            };
+
             if (navigator.canShare && navigator.canShare(shareData)) {
                 await navigator.share(shareData);
             } else {
-                throw new Error("El navegador no puede compartir archivos.");
+                throw new Error("El navegador no soporta compartir archivos nativamente.");
             }
 
         } catch (err) {
-            console.warn("Fallo al adjuntar la imagen. Compartiendo solo texto. Razón:", err.message);
-            // 4. Fallback a compartir solo texto (con enlace directo a WhatsApp)
-            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(textoFinal)}`;
-            window.open(whatsappUrl, '_blank');
-            alert("Tu navegador no soporta compartir la imagen, pero el mensaje se ha abierto en WhatsApp. Puedes adjuntar la imagen manualmente.");
+            console.error("Error al compartir el cartel:", err);
+            // Fallback: Descargar la imagen
+            const imageURL = canvas.toDataURL('image/jpeg', 0.9);
+            const a = document.createElement('a');
+            a.href = imageURL;
+            a.download = 'Cartel_Inspiracion_JUMI.jpg';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            alert("Tu navegador no soporta compartir directamente. Se ha descargado la imagen. Puedes compartirla manualmente en WhatsApp.");
         }
-    }
-    
-    // Función para guardar la oración (se mantiene para la sección de Oración)
-    function guardarOracion() {
-      const texto = document.getElementById('oracion-text').innerText;
-      const blob = new Blob([texto], { type: 'text/plain' });
-      const url = URL.createObjectURL(blob);
-
-      const enlace = document.createElement('a');
-      enlace.href = url;
-      enlace.download = 'oracion_comunitaria_jumi.txt';
-      document.body.appendChild(enlace);
-      enlace.click();
-      document.body.removeChild(enlace);
-      URL.revokeObjectURL(url);
     }
     
     // Inicialización al cargar el DOM
@@ -797,24 +839,19 @@
         gestorVersiculo.iniciar();
 
         // Animación de secciones
-        window.addEventListener('scroll', () => {
-          document.querySelectorAll('.section').forEach(seccion => {
-            const rect = seccion.getBoundingClientRect();
-            if (rect.top < window.innerHeight * 0.85) {
-              seccion.classList.add('visible');
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
             }
           });
-        });
-        
-        // Ejecutar la animación inicial
+        }, { threshold: 0.1 });
+
         document.querySelectorAll('.section').forEach(seccion => {
-            const rect = seccion.getBoundingClientRect();
-            if (rect.top < window.innerHeight * 0.85) {
-              seccion.classList.add('visible');
-            }
+          observer.observe(seccion);
         });
     });
 
   </script>
-  </body>
-</html>
+
