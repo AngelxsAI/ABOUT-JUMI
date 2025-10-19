@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -112,6 +111,16 @@
       100% { opacity: 1; transform: scale(1); }
     }
 
+    .tribute {
+      margin-top: 25px;
+      font-size: 1em;
+      font-style: italic;
+      color: #ffd700;
+      opacity: 0;
+      animation: fadeIn 3s ease forwards 2s;
+      text-shadow: 0 0 8px #fff;
+    }
+
     footer {
       position: absolute;
       bottom: 20px;
@@ -125,17 +134,6 @@
     footer span {
       color: var(--accent);
       font-weight: 600;
-    }
-
-    /* Frase inspiracional */
-    .tribute {
-      margin-top: 25px;
-      font-size: 1em;
-      font-style: italic;
-      color: #ffd700;
-      opacity: 0;
-      animation: fadeIn 3s ease forwards 2s;
-      text-shadow: 0 0 8px #fff;
     }
 
     .fade-out {
@@ -161,31 +159,35 @@
 
   <footer>Desarrollado por <span>Angel</span></footer>
 
-  <!-- Audio (comienza en el segundo 38, dura 7 segundos) -->
-  <audio id="intro-audio" preload="auto">
-    <source src="God.mp3" type="audio/mpeg">
-  </audio>
+  <!-- Canción -->
+  <audio id="intro-audio" preload="auto" src="God.mp3"></audio>
 
   <script>
     const REDIRECT_URL = "Html2.html";
-    const REDIRECT_DELAY_MS = 7000; // duración total = 7 segundos
+    const REDIRECT_DELAY_MS = 7000; // 7 segundos antes de redirigir
     const audio = document.getElementById("intro-audio");
 
     document.addEventListener('DOMContentLoaded', async () => {
       try {
-        await audio.play().catch(() => {}); // intenta reproducir (puede requerir interacción)
-        audio.currentTime = 36; // inicia desde el segundo 38
-        audio.play();
+        // Configura el audio para comenzar desde el segundo 38
+        audio.currentTime = 38;
 
-        // Detiene el audio después de 7 segundos
-        setTimeout(() => {
-          audio.pause();
-        }, 7000);
+        // Permite reproducción automática (algunos navegadores piden interacción)
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            // Pausa tras 7 segundos exactos
+            setTimeout(() => audio.pause(), 7000);
+          }).catch(err => {
+            console.warn("El navegador bloqueó la reproducción automática:", err);
+          });
+        }
 
       } catch (e) {
-        console.warn("El navegador bloqueó la reproducción automática:", e);
+        console.warn("Error al reproducir el audio:", e);
       }
 
+      // Redirección automática después de 7 segundos
       const body = document.body;
       setTimeout(() => {
         body.classList.add('fade-out');
