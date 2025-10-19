@@ -14,7 +14,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,900;1,300&display=swap" rel="stylesheet">
   
   <style>
-    /* VARIABLES DE COLOR */
+    /* ---------------------------------------------------- */
+    /* 1. VARIABLES Y RESET */
+    /* ---------------------------------------------------- */
     :root {
       --primary: #6a0dad; /* Morado JUMI */
       --accent: #00bcd4; /* Celeste JUMI */
@@ -23,9 +25,13 @@
       --text-color: #333;
       --shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
       --transition: all 0.3s ease;
+      --warning: #d32f2f;
+      /* Nuevas variables para resplandor */
+      --glow-color-primary: rgba(106, 13, 173, 0.6);
+      --glow-color-accent: rgba(0, 188, 212, 0.6);
+      --glow-color-orange: rgba(255, 152, 0, 0.6);
     }
 
-    /* ESTILOS GLOBALES Y RESET */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -45,7 +51,9 @@
       color: var(--primary);
     }
 
-    /* HEADER */
+    /* ---------------------------------------------------- */
+    /* 2. ENCABEZADO Y NAVEGACIÓN */
+    /* ---------------------------------------------------- */
     header {
       background: linear-gradient(135deg, var(--primary), #8f2fdc);
       color: white;
@@ -53,37 +61,12 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       text-align: center;
     }
-    .logo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .cruz-icon {
-      width: 60px; 
-      height: 60px;
-      fill: white;
-      margin-bottom: 10px;
-      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
-    }
-    header h1 {
-      font-size: 2.5rem; 
-      font-weight: 900;
-      letter-spacing: 3px;
-    }
-    .header-subtitle {
-      font-size: 1rem;
-      opacity: 0.9;
-      margin-top: 5px;
-    }
-    .angel-credit {
-        font-size: 0.85rem;
-        font-style: italic;
-        opacity: 0.7;
-        margin-top: 5px;
-        font-weight: 300;
-    }
+    .logo { display: flex; flex-direction: column; align-items: center; }
+    .cruz-icon { width: 60px; height: 60px; fill: white; margin-bottom: 10px; filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); }
+    header h1 { font-size: 2.5rem; font-weight: 900; letter-spacing: 3px; }
+    .header-subtitle { font-size: 1rem; opacity: 0.9; margin-top: 5px; }
+    .angel-credit { font-size: 0.85rem; font-style: italic; opacity: 0.7; margin-top: 5px; font-weight: 300; }
 
-    /* NAVEGACIÓN */
     .main-nav {
       position: sticky;
       top: 0;
@@ -91,45 +74,15 @@
       background-color: white;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 15px;
-    }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      padding: 10px 0;
-      flex-wrap: wrap;
-    }
-    .nav-links li a {
-      color: var(--primary);
-      padding: 10px 18px;
-      display: block;
-      font-weight: 600;
-      border-radius: 25px;
-      transition: var(--transition);
-      font-size: 0.95em;
-    }
-    .nav-links li a:hover {
-      background-color: var(--accent);
-      color: white;
-      transform: translateY(-2px);
-    }
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--primary);
-      font-size: 1.5rem;
-      padding: 15px;
-      cursor: pointer;
-      width: 100%;
-      text-align: left;
-    }
+    .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+    .nav-links { list-style: none; display: flex; justify-content: center; padding: 10px 0; flex-wrap: wrap; }
+    .nav-links li a { color: var(--primary); padding: 10px 18px; display: block; font-weight: 600; border-radius: 25px; transition: var(--transition); font-size: 0.95em; }
+    .nav-links li a:hover { background-color: var(--accent); color: white; transform: translateY(-2px); }
+    .mobile-menu-btn { display: none; background: none; border: none; color: var(--primary); font-size: 1.5rem; padding: 15px; cursor: pointer; width: 100%; text-align: left; }
 
-    /* VERSÍCULO DEL DÍA */
+    /* ---------------------------------------------------- */
+    /* 3. VERSÍCULO DEL DÍA */
+    /* ---------------------------------------------------- */
     #versiculo-del-dia {
       background: linear-gradient(135deg, var(--accent), #7deaf9);
       color: white;
@@ -139,52 +92,24 @@
       margin: 25px 0;
       border-radius: 15px;
     }
-    .contenido-verso {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .texto-verso {
-      font-style: italic;
-      font-size: 1.25rem;
-      margin-bottom: 15px;
-      font-weight: 500;
-    }
-    .referencia-verso {
-      font-weight: 700;
-      font-size: 1rem;
-      opacity: 0.9;
-    }
-    .botones-compartir {
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-    }
-    .btn-compartir {
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+    .contenido-verso { max-width: 800px; margin: 0 auto; }
+    .texto-verso { font-style: italic; font-size: 1.25rem; margin-bottom: 15px; font-weight: 500; }
+    .referencia-verso { font-weight: 700; font-size: 1rem; opacity: 0.9; }
+    .botones-compartir { margin-top: 20px; display: flex; justify-content: center; gap: 15px; }
+    .btn-compartir { 
+      background-color: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer; font-weight: 600; 
+      transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; 
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
     }
-    .btn-compartir:hover {
-      background-color: #510a8d;
-      transform: translateY(-2px);
+    .btn-compartir:hover { 
+      background-color: #510a8d; transform: translateY(-2px);
+      box-shadow: 0 0 15px var(--glow-color-primary), 0 0 30px var(--glow-color-primary); /* Resplandor */
     }
 
-    /* SECCIONES GENERALES */
-    main {
-      padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    /* ---------------------------------------------------- */
+    /* 4. SECCIONES Y BOTONES GENERALES (Mejorados) */
+    /* ---------------------------------------------------- */
+    main { padding: 20px; max-width: 1200px; margin: 0 auto; }
     .section {
       background-color: white;
       padding: 35px;
@@ -195,206 +120,247 @@
       transform: translateY(20px);
       transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
-    .section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .section h2 {
-      color: var(--primary);
-      margin-bottom: 25px;
-      border-bottom: 3px solid var(--accent);
-      padding-bottom: 10px;
-      font-size: 1.8rem;
+    .section.visible { opacity: 1; transform: translateY(0); }
+    .section h2 { color: var(--primary); margin-bottom: 25px; border-bottom: 3px solid var(--accent); padding-bottom: 10px; font-size: 1.8rem; }
+
+    .btn-group { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
+    .btn { 
+      padding: 12px 25px; border-radius: 50px; font-weight: 700; text-transform: uppercase; 
+      transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; 
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); border: 2px solid transparent;
+      position: relative; /* Para el efecto de resplandor */
+      overflow: hidden; /* Para el efecto de resplandor */
+      z-index: 1;
     }
 
-    /* BOTONES GRUPO */
-    .btn-group {
-      margin-top: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      justify-content: center;
-    }
-    .btn {
-      padding: 12px 25px;
-      border-radius: 50px;
-      font-weight: 700;
-      text-transform: uppercase;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-    }
-    .btn-primary {
-      background-color: var(--primary);
-      color: white;
-      border: 2px solid var(--primary);
-    }
-    .btn-primary:hover {
-      background-color: var(--accent);
-      border-color: var(--accent);
-      transform: scale(1.05);
-    }
-    .btn-secondary {
-      background-color: transparent;
-      color: var(--primary);
-      border: 2px solid var(--primary);
-    }
-    .btn-secondary:hover {
-      background-color: var(--primary);
-      color: white;
+    /* Efecto de resplandor general para botones */
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: radial-gradient(circle, var(--glow-color-primary) 0%, transparent 70%);
+        transition: width 0.4s ease, height 0.4s ease, top 0.4s ease, left 0.4s ease;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        z-index: -1;
     }
 
-    /* GENERADOR DE INSPIRACIÓN */
-    #generador-inspiracion {
-        text-align: center;
-        background-color: #e3f2fd; 
+    .btn:hover::before {
+        width: 200%;
+        height: 200%;
+        opacity: 1;
     }
-    #mensajeInput {
+
+    .btn-primary { background-color: var(--primary); color: white; border-color: var(--primary); }
+    .btn-primary:hover { 
+      background-color: var(--accent); border-color: var(--accent); transform: scale(1.05); 
+      box-shadow: 0 0 15px var(--glow-color-primary), 0 0 30px var(--glow-color-primary);
+    }
+    .btn-secondary { background-color: transparent; color: var(--primary); border-color: var(--primary); }
+    .btn-secondary:hover { 
+      background-color: var(--primary); color: white; 
+      box-shadow: 0 0 15px var(--glow-color-primary), 0 0 30px var(--glow-color-primary);
+    }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; background-color: gray; border-color: gray; }
+
+    /* ---------------------------------------------------- */
+    /* 5. GENERADOR DE CARTELES */
+    /* ---------------------------------------------------- */
+    #generador-inspiracion { text-align: center; background-color: #e3f2fd; }
+    #config-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 20px; align-items: center;}
+    #mensajeInput, #selectImagen {
         width: 100%;
-        min-height: 120px;
+        max-width: 600px;
         padding: 15px;
         border: 2px solid var(--accent);
         border-radius: 8px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         transition: border-color 0.3s;
         font-size: 1rem;
         resize: vertical;
     }
-    #mensajeInput:focus {
-        border-color: var(--primary);
-        outline: none;
+    #mensajeInput { min-height: 120px; }
+    #error-message { color: var(--warning); font-weight: 600; margin-bottom: 15px; display: none; }
+    #cartelContainer { margin-top: 30px; background-color: #fff; border-radius: 10px; padding: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); display: none; }
+    #cartelCanvas { max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); display: block; margin: 0 auto; }
+    #compartirCartelBtn { 
+      margin-top: 15px; background: linear-gradient(90deg, #ffc107, #ff9800); color: var(--secondary); border: none;
     }
-    #error-message {
-        color: #d32f2f;
-        font-weight: 600;
-        margin-bottom: 15px;
-        display: none;
-    }
-    #cartelContainer {
-        margin-top: 30px;
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 15px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        display: none; 
-    }
-    #cartelCanvas {
-        max-width: 100%;
-        height: auto;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        display: block;
-        margin: 0 auto;
-    }
-    #compartirCartelBtn {
-        margin-top: 15px;
-        background: linear-gradient(90deg, #ffc107, #ff9800);
-        color: var(--secondary);
-        border: none;
-    }
-    #compartirCartelBtn:hover {
-        background: linear-gradient(90deg, #ff9800, #ffc107);
-        color: var(--secondary);
+    #compartirCartelBtn:hover { 
+      background: linear-gradient(90deg, #ff9800, #ffc107); color: var(--secondary); 
+      box-shadow: 0 0 15px var(--glow-color-orange), 0 0 30px var(--glow-color-orange); /* Resplandor */
     }
 
-    /* LISTA DE MIEMBROS */
+    /* ---------------------------------------------------- */
+    /* 6. LISTA DE MIEMBROS MEJORADA */
+    /* ---------------------------------------------------- */
+    .leadership-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px dashed var(--primary);
+        border-radius: 10px;
+    }
+    .leadership-section h3 {
+        color: var(--accent);
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 5px;
+        font-size: 1.2rem;
+    }
     .members-list {
       list-style: none;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
       padding: 0;
       text-align: center;
     }
     .members-list li {
       background-color: #f8f8f8;
-      padding: 12px;
-      border-radius: 8px;
+      padding: 8px 15px;
+      border-radius: 20px;
       font-weight: 600;
       color: var(--primary);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
       transition: transform 0.2s;
     }
-    .members-list li:hover {
-        transform: translateY(-3px);
+    .members-list li:hover { transform: translateY(-2px); }
+
+    /* ---------------------------------------------------- */
+    /* 7. CALENDARIO DINÁMICO (Mejorado y Animado) */
+    /* ---------------------------------------------------- */
+    .calendar-container {
+        max-width: 450px; /* Más compacto */
+        margin: 20px auto;
+        padding: 15px;
+        background-color: #fcfcfc;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+    .calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        padding: 0 10px;
+    }
+    .calendar-header button {
+        background: none;
+        border: none;
+        color: var(--primary);
+        font-size: 1.2rem; /* Más pequeño */
+        cursor: pointer;
+        transition: color 0.3s, transform 0.3s;
+        padding: 5px;
+        border-radius: 50%;
+    }
+    .calendar-header button:hover { 
+      color: var(--accent); transform: scale(1.1); 
+      box-shadow: 0 0 10px var(--glow-color-primary); /* Resplandor */
+    }
+    .calendar-header h3 { font-size: 1.3rem; color: var(--primary); }
+
+    .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 3px; /* Espacio más pequeño */
+        font-size: 0.85rem; /* Más pequeño */
+        text-align: center;
+    }
+    .day-name { font-weight: 700; color: var(--primary); padding: 5px 0; font-size: 0.8rem;}
+    .day-cell {
+        padding: 8px 0; /* Menos padding */
+        border-radius: 4px;
+        cursor: pointer; /* Indicar interactividad */
+        position: relative;
+        overflow: hidden;
+        transition: all 0.2s ease-out;
+        aspect-ratio: 1 / 1; /* Celdas cuadradas */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .day-cell.other-month { opacity: 0.4; pointer-events: none; } /* Desactivar hover en días de otros meses */
+    .day-cell.current-day { 
+        background-color: var(--accent); color: white; font-weight: 700; 
+        box-shadow: 0 0 10px var(--glow-color-accent); /* Resplandor en día actual */
+    }
+    .day-cell.current-day:hover { transform: scale(1.05); }
+
+    .day-cell.sunday { 
+        background-color: #ffe0b2; /* Naranja claro */
+        color: var(--primary); font-weight: 600; 
+        position: relative;
+        animation: sunday-glow 2s infinite alternate; /* Animación de resplandor suave */
+    }
+    .day-cell.sunday.current-day { 
+        background-color: var(--primary); 
+        color: white; 
+        animation: none; /* Desactivar glow si es el día actual */
+        box-shadow: 0 0 10px var(--glow-color-primary), 0 0 20px var(--glow-color-primary);
+    }
+    .day-cell.sunday:hover { transform: scale(1.05); background-color: var(--accent); color: white; }
+
+    @keyframes sunday-glow {
+        0% { box-shadow: 0 0 5px rgba(255, 180, 0, 0.4); }
+        100% { box-shadow: 0 0 15px rgba(255, 180, 0, 0.7); }
     }
 
-    /* OTROS ESTILOS DE SECCIÓN (Iframes) */
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      border-radius: 8px;
+    .day-event {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(106, 13, 173, 0.8); /* Morado semi-transparente */
+        color: white;
+        font-size: 0.6em; /* Más pequeño */
+        padding: 1px 0;
+        transform: translateY(100%);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        opacity: 0;
+        pointer-events: none; /* No bloquear eventos de la celda */
     }
-    .calendar-container, .map-container {
-      height: 400px;
-      margin-top: 20px;
+    .day-cell.sunday:hover .day-event { 
+        transform: translateY(0); 
+        opacity: 1; 
     }
+    
+    /* ---------------------------------------------------- */
+    /* 8. FOOTER Y MEDIA QUERIES */
+    /* ---------------------------------------------------- */
+    iframe { width: 100%; height: 100%; border: 0; border-radius: 8px; }
+    .map-container { height: 400px; margin-top: 20px; }
+    
+    footer { background-color: var(--primary); color: white; padding: 25px; text-align: center; border-top: 5px solid var(--accent); }
+    .social-links { margin-bottom: 20px; }
+    .social-links a { color: white; font-size: 1.8rem; margin: 0 12px; transition: var(--transition); }
+    .social-links a:hover { color: var(--accent); transform: scale(1.2); }
+    .copyright { font-size: 0.9rem; margin: 5px 0; }
 
-    /* FOOTER */
-    footer {
-      background-color: var(--primary);
-      color: white;
-      padding: 25px;
-      text-align: center;
-      border-top: 5px solid var(--accent);
+    @media (min-width: 800px) {
+        .leadership-grid { grid-template-columns: 1fr 1fr; }
     }
-    .social-links {
-      margin-bottom: 20px;
-    }
-    .social-links a {
-      color: white;
-      font-size: 1.8rem;
-      margin: 0 12px;
-      transition: var(--transition);
-    }
-    .social-links a:hover {
-      color: var(--accent);
-      transform: scale(1.2);
-    }
-    .copyright {
-      font-size: 0.9rem;
-      margin: 5px 0;
-    }
-
-    /* MEDIA QUERIES */
     @media (max-width: 800px) {
-        .nav-links {
-            display: none;
-            flex-direction: column;
-            width: 100%;
-            padding: 0;
-            text-align: center;
-        }
-        .nav-links.active {
-            display: flex;
-        }
-        .nav-links li {
-            width: 100%;
-            border-bottom: 1px solid #eee;
-        }
-        .nav-links li:last-child {
-            border-bottom: none;
-        }
-        .mobile-menu-btn {
-            display: block;
-        }
-        .btn-group {
-            justify-content: space-around;
-        }
-        .btn {
-            width: 48%;
-            text-align: center;
-            justify-content: center;
-            font-size: 0.85rem;
-        }
-        header h1 {
-            font-size: 1.8rem;
-        }
+        /* Media queries para móvil (igual que antes) */
+        .nav-links { display: none; flex-direction: column; width: 100%; padding: 0; text-align: center; }
+        .nav-links.active { display: flex; }
+        .mobile-menu-btn { display: block; }
+        .btn-group { justify-content: space-around; }
+        .btn { width: 48%; text-align: center; justify-content: center; font-size: 0.85rem; }
+        header h1 { font-size: 1.8rem; }
+        .calendar-container { max-width: 95%; } /* Ajuste para móviles */
+        .calendar-header h3 { font-size: 1.1rem; }
+        .calendar-header button { font-size: 1rem; }
+        .day-name { font-size: 0.7rem; }
+        .day-cell { font-size: 0.8rem; padding: 6px 0; }
+        .day-event { font-size: 0.55em; }
     }
   </style>
 </head>
@@ -402,7 +368,6 @@
   <header>
     <div class="header-content">
       <div class="logo">
-        
         <svg class="cruz-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <path d="M 40 0 L 60 0 L 60 40 L 100 40 L 100 60 L 60 60 L 60 100 L 40 100 L 40 60 L 0 60 L 0 40 L 0 40 L 40 40 L 40 0 Z" fill="white"/>
         </svg>
@@ -429,11 +394,10 @@
     </div>
   </nav>
 
-  
 <div id="versiculo-del-dia"></div>
 
   <main>
-
+    
     <section id="inicio" class="section">
       <h2><i class="fas fa-cross"></i> Bienvenidos a JUMI</h2>
       <p>JUMI es un espacio creado para jóvenes que buscan crecer en su fe católica, compartir experiencias y formar una comunidad basada en los valores cristianos. Aquí encontrarás un ambiente de amor, respeto y fraternidad donde podrás desarrollar tu espiritualidad.</p>
@@ -448,11 +412,23 @@
 
     <section id="generador-inspiracion" class="section">
       <h2><i class="fas fa-paint-brush"></i> Generador de Carteles de Inspiración</h2>
-      <p>Escribe tu mensaje o reflexión. Se seleccionará una imagen aleatoria de Jesús, y se generará el cartel con tu mensaje y el enlace de JUMI, listo para compartir. **El texto aparecerá en una zona segura para no cubrir rostros.**</p>
-      
+      <p>Escribe tu mensaje, elige un fondo, y selecciona un color. El texto aparecerá en una zona segura para no cubrir rostros.</p>
+
       <div style="max-width: 600px; margin: 20px auto;">
-        <textarea id="mensajeInput" placeholder="Escribe tu mensaje de fe o reflexión (ej. 'La alegría del Señor es nuestra fuerza.')..."></textarea>
         
+        <div id="config-controls">
+            <select id="selectImagen" style="max-width: 45%;">
+                <option value="Jesus2.jpg">Fondo 1 (Jesús y la niña)</option>
+                <option value="Jesus3.jpg">Fondo 2 (Jesús en el campo)</option>
+                <option value="1000030531.jpg" selected>Fondo 3 (Jesús en el carro)</option>
+            </select>
+            <button id="cambiarColorBtn" class="btn btn-secondary" style="max-width: 45%;">
+                <i class="fas fa-palette"></i> Color Texto: Blanco
+            </button>
+        </div>
+
+        <textarea id="mensajeInput" placeholder="Escribe tu mensaje de fe o reflexión..."></textarea>
+
         <p id="error-message"></p>
         <button id="generarCartelBtn" class="btn btn-primary" style="width: 100%;"><i class="fas fa-wand-magic-sparkles"></i> Generar Cartel</button>
       </div>
@@ -473,41 +449,68 @@
     </section>
 
     <section id="miembros" class="section">
-      <h2><i class="fas fa-users"></i> Nuestros Miembros</h2>
-      <p>Conoce a los jóvenes que forman parte de nuestra comunidad JUMI. Juntos trabajamos para crecer en fe y servir a los demás.</p>
+      <h2><i class="fas fa-users"></i> Estructura y Miembros</h2>
+      <p>Conoce a los líderes y miembros activos que forman parte de nuestra comunidad JUMI, trabajando juntos para crecer en fe.</p>
 
-      <ul class="members-list">
-        <li>Steven(Subco) </li>
-        <li>Daniel</li>
-        <li>Oscar</li>
-        <li>Kenia</li>
-        <li>Valentin</li>
-        <li>Rudy(Co)</li>
-        <li>Angel</li>
-        <li>Kevin</li>
-        <li>Natalia</li>
-        <li>Jaime</li>
-        <li>Gissela</li>
-        <li>Michael</li>
-        <li>Nicol</li>
-        <li>Katty</li>
-        <li>Jasmin</li>
-      </ul>
+      <div class="leadership-grid">
+        <div class="leadership-section">
+            <h3><i class="fas fa-crown"></i> Coordinador</h3>
+            <ul class="members-list">
+                <li>Rudy</li>
+   
+            </ul>
+        </div>
+        <div class="leadership-section">
+            <h3><i class="fas fa-user-tag"></i> Subcoordinador</h3>
+            <ul class="members-list">
+                <li>steven</li>
+            </ul>
+        </div>
+        <div class="leadership-section" style="grid-column: 1 / -1;">
+            <h3><i class="fas fa-user-friends"></i> Miembros Activos</h3>
+            <ul class="members-list">
+                <li>Angel</li>
+                <li>Kevin</li>
+                <li>Natalia</li>
+                <li>Jaime</li>
+                <li>Jessica</li>
+                <li>Gissela</li>
+                <li>Michael</li>
+                <li>Oscar Nieto</li>
+                <li>Mauricio</li>
+                <li>Katty</li>
+                <li>Jasmin</li>
+                <li>Daniel</li>
+                <li>oscar cheguen</li>
+                <li>Nicol González</li>
+                <li>erika</li>
+                
+            </ul>
+        </div>
+      </div>
 
       <p style="margin-top: 1.5rem; font-style: italic;">"Porque donde dos o tres se reúnen en mi nombre, allí estoy yo en medio de ellos." - Mateo 18:20</p>
     </section>
 
     <section id="eventos" class="section">
-      <h2><i class="fas fa-calendar-alt"></i> Próximos Eventos</h2>
-      <p>Mantente informado sobre nuestras próximas actividades. ¡Te esperamos con alegría!</p>
+      <h2><i class="fas fa-calendar-alt"></i> Calendario de Reuniones</h2>
+      <p>Nuestro calendario resalta el día actual y marca todas nuestras reuniones de formación (todos los domingos). ¡Te esperamos con alegría!</p>
 
       <div class="calendar-container">
-        <iframe 
-          src="https://calendar.google.com/calendar/embed?src=8bf36b5b88e056fd52aee2ee97d1503b2d1fda335e319581bfd7ffecfca1b426%40group.calendar.google.com&ctz=America%2FEl_Salvador"
-          title="Calendario de Eventos JUMI"
-          frameborder="0" 
-          scrolling="no">
-        </iframe>
+        <div class="calendar-header">
+            <button id="prevMonthBtn"><i class="fas fa-chevron-left"></i></button>
+            <h3 id="monthYearDisplay"></h3>
+            <button id="nextMonthBtn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="calendar-grid" id="calendarGrid">
+            <div class="day-name">Dom</div>
+            <div class="day-name">Lun</div>
+            <div class="day-name">Mar</div>
+            <div class="day-name">Mié</div>
+            <div class="day-name">Jue</div>
+            <div class="day-name">Vie</div>
+            <div class="day-name">Sáb</div>
+            </div>
       </div>
     </section>
 
@@ -544,77 +547,84 @@
     </div>
   </footer>
 
-  
+
 <script>
-    // Constantes
+    // ----------------------------------------------------
+    // 1. CONSTANTES GLOBALES Y CONFIGURACIÓN
+    // ----------------------------------------------------
     const URL_JUMI = "https://about-jumi.vercel.app/";
     const CARTEL_WIDTH = 800;
     const CARTEL_HEIGHT = 600;
+    const COLORS = [
+        { name: "Blanco", hex: "#FFFFFF" },
+        { name: "Amarillo Claro", hex: "#FFFFA0" },
+        { name: "Azul Celeste", hex: "#00BCD4" }
+    ];
 
-    // --- Configuración de Imágenes y Zonas Seguras ---
-    const IMAGENES_DISPONIBLES = [
-        { 
+    // --- Configuración de Imágenes y Zonas Seguras (Ajustado) ---
+    const IMAGENES_DISPONIBLES = {
+        "Jesus2.jpg": { 
             nombre: "Jesus2.jpg", 
-            descripcion: "Jesús y la niña dibujando",
-            // Zona superior segura (de 5% al 50% de la altura)
             safeAreaTop: 0.05, 
             safeAreaBottom: 0.50 
         },
-        { 
+        "Jesus3.jpg": { 
             nombre: "Jesus3.jpg", 
-            descripcion: "Jesús y la niña caminando en el campo",
-            // Zona superior segura (de 5% al 35% de la altura)
             safeAreaTop: 0.05, 
             safeAreaBottom: 0.35 
         },
-        { 
+        "Jesus.jpg": { 
             nombre: "Jesus.jpg", 
-            descripcion: "Jesús en el carro",
-            // Zona superior segura (de 5% al 50% de la altura)
             safeAreaTop: 0.05, 
             safeAreaBottom: 0.50 
         }
-    ];
-
-    // --- Lista de Bloqueo de Contenido Sensible (Censura Reforzada) ---
-    const GROSERIAS_BLOQUEO = [
-        // Groserías comunes en español (con posibles deformaciones)
-        "mierda", "puta", "cabron", "cabrón", "coño", "joder", "gilipollas", 
-        "pendejo", "idiota", "carajo", "verga", "chinga", "puto", "coger", 
-        "mamada", "pito", "vergas", "culero", "mamon", "mamar", "chupar",
-
-        // Contenido +18
-        "vagina", "culo", "teta", "seno", "sexo", "porn", "pene", "coito", 
-        "orgasmo", "erotico", "masturba", "desnudo", "semen", "sodomita",
-
-        // Palabras sensibles/ofensivas solicitadas
-        "gay", "homosexual", "maricon", "maricón", "lesbiana", "trans", "bisexual", 
-        
-        // Groserías comunes en inglés
-        "fuck", "shit", "asshole", "bitch", "bastard", "damn", "faggot", "dyke"
-    ];
-
-    // Variables globales
-    let cartelImage = null;
-    let imagenActual = IMAGENES_DISPONIBLES[0]; 
-
-    // --- Utilidades de Texto y Errores ---
+    };
     
+    // --- Sistema de Censura Reforzado (Revisado) ---
+    const GROSERIAS_BLOQUEO = [
+        "mierda", "puta", "cabron", "coño", "joder", "gilipollas", 
+        "pendejo", "idiota", "carajo", "verga", "chinga", "puto", "coger", 
+        "mamada", "pito", "culero", "vagina", "culo", "teta", "sexo", 
+        "porn", "pene", "gay", "homosexual", "maricon", "lesbiana", "trans", 
+        "bisexual", "fuck", "shit", "bitch", "bastard"
+    ];
+
+    // Variables de estado
+    let cartelImage = null;
+    let imagenActualKey = "Jesus.jpg";
+    let currentColorIndex = 0; // Empieza en Blanco
+    let currentCalendarDate = new Date();
+
+
+    // ----------------------------------------------------
+    // 2. UTILIDADES GENERALES
+    // ----------------------------------------------------
+
+    /**
+     * Limpia y normaliza el texto para detección de groserías.
+     * @param {string} texto 
+     * @returns {string} Texto limpio (minúsculas, sin acentos, sin leetspeak).
+     */
     function limpiarTexto(texto) {
-        // 1. Eliminar espacios adicionales, convertir a minúsculas
         let textoLimpio = texto.trim().toLowerCase();
-        
-        // 2. Eliminar acentos (normalize y regex)
+        // Eliminar acentos
         textoLimpio = textoLimpio.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        // Intentar detectar leetspeak común (sustituir 0, 1, 3, 4, 5, 7 por letras)
+        textoLimpio = textoLimpio.replace(/0/g, 'o').replace(/1/g, 'l').replace(/3/g, 'e').replace(/4/g, 'a').replace(/5/g, 's').replace(/7/g, 't');
         
         return textoLimpio;
     }
 
+    /**
+     * Detecta si el texto contiene alguna grosería de la lista de bloqueo.
+     * @param {string} texto
+     * @returns {boolean}
+     */
     function contieneGroserias(texto) {
         const textoLimpio = limpiarTexto(texto);
         for (const groseria of GROSERIAS_BLOQUEO) {
-            // Expresión regular que busca la palabra completa o si está contenida en cualquier forma
-            const regex = new RegExp(`\\b${groseria}\\b|${groseria.replace(/[aeiou]/g, '[aeiou]')}`, 'i'); 
+            // Usa RegExp para buscar la palabra completa (\b) O si está contenida
+            const regex = new RegExp(`\\b${groseria}\\b|${groseria}`, 'i'); 
             if (regex.test(textoLimpio)) {
                 return true;
             }
@@ -622,20 +632,52 @@
         return false;
     }
 
+    /**
+     * Muestra un mensaje de error en el generador de carteles.
+     * @param {string} message
+     */
     function showError(message) {
         const errorEl = document.getElementById('error-message');
         errorEl.textContent = message;
         errorEl.style.display = 'block';
         document.getElementById('cartelContainer').style.display = 'none';
         document.getElementById('compartirCartelBtn').style.display = 'none';
-        
+
         setTimeout(() => {
             errorEl.style.display = 'none';
         }, 8000); 
     }
-    // --- Fin Utilidades ---
+    
+    /**
+     * Precarga la imagen seleccionada y actualiza la variable global.
+     * @returns {Promise<boolean>} Resuelve a true si carga con éxito, false en caso de fallo.
+     */
+    function precargarImagen() {
+        return new Promise(resolve => {
+            const selectedImageKey = document.getElementById('selectImagen').value;
+            const imagenData = IMAGENES_DISPONIBLES[selectedImageKey];
+            
+            // Actualizar el estado global
+            imagenActualKey = selectedImageKey;
 
-    // --- Gestor del Versículo y Precarga de Imágenes ---
+            const img = new Image();
+            img.crossOrigin = 'Anonymous'; 
+            img.src = imagenData.nombre; 
+
+            img.onload = () => {
+                cartelImage = img;
+                resolve(true); // Carga exitosa
+            };
+            img.onerror = () => {
+                cartelImage = null; // Marcar como fallida
+                resolve(false); // Carga fallida
+            };
+        });
+    }
+
+    // ----------------------------------------------------
+    // 3. GESTOR DE VERSÍCULO
+    // ----------------------------------------------------
     const gestorVersiculo = {
         versiculos: [
           { texto: "A toda perfección le he visto límite, pero tus mandamientos son ilimitados.", referencia: "Salmos 119:96" },
@@ -644,62 +686,21 @@
           { texto: "Todo lo puedo en Cristo que me fortalece.", referencia: "Filipenses 4:13" },
           { texto: "Porque donde dos o tres se reúnen en mi nombre, allí estoy yo en medio de ellos.", referencia: "Mateo 18:20" }
         ],
-
-        iniciar() {
-          this.configurarEventos();
-          this.cargarVersiculo();
-          this.precargarImagenCartel();
-          // Carga el versículo una vez al día (86,400,000 milisegundos)
-          setInterval(() => this.cargarVersiculo(), 86400000); 
-        },
-
-        configurarEventos() {
-          document.getElementById('mobileMenuBtn').addEventListener('click', () => {
-            document.getElementById('navLinks').classList.toggle('active');
-          });
-
-          document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-              e.preventDefault();
-              document.getElementById('navLinks').classList.remove('active'); 
-              const target = document.querySelector(this.getAttribute('href'));
-              if (target) {
-                 window.scrollTo({
-                  top: target.offsetTop - 100,
-                  behavior: 'smooth'
-                });
-              }
-            });
-          });
-          
-          const btnGenerarCartel = document.getElementById('generarCartelBtn');
-          if (btnGenerarCartel) {
-              btnGenerarCartel.addEventListener('click', generarCartelInspiracion);
-          }
-
-          const btnCompartirCartel = document.getElementById('compartirCartelBtn');
-          if (btnCompartirCartel) {
-              btnCompartirCartel.addEventListener('click', compartirCartel);
-          }
-        },
-
         async cargarVersiculo() {
           try {
             const respuesta = await fetch('https://beta.ourmanna.com/api/v1/get/?format=json&version=RVR1960');
-            if (!respuesta.ok) throw new Error('Error al obtener el versículo de la API');
+            if (!respuesta.ok) throw new Error('Error API');
             const data = await respuesta.json();
-            
             const texto = data.verse.details.text;
             if (texto && !/you|your|the|is|of|and|but/i.test(texto)) {
                 this.mostrarVersiculo(data.verse.details.text, data.verse.details.reference);
             } else {
-                throw new Error('Versículo de la API no es válido o está en inglés');
+                throw new Error('Versículo no válido');
             }
           } catch (error) {
             this.usarVersiculoLocal();
           }
         },
-
         usarVersiculoLocal() {
           const hoy = new Date();
           const indice = hoy.getDate() % this.versiculos.length; 
@@ -708,7 +709,6 @@
             this.versiculos[indice].referencia
           );
         },
-
         mostrarVersiculo(texto, referencia) {
           const contenedor = document.getElementById('versiculo-del-dia');
           if (!contenedor) return; 
@@ -729,110 +729,116 @@
               </div>
             </div>
           `;
-        },
-
-        precargarImagenCartel() {
-            // Selecciona una imagen aleatoria para precargarla
-            const indiceAleatorio = Math.floor(Math.random() * IMAGENES_DISPONIBLES.length);
-            imagenActual = IMAGENES_DISPONIBLES[indiceAleatorio];
-
-            const img = new Image();
-            img.crossOrigin = 'Anonymous'; 
-            img.src = imagenActual.nombre; 
-
-            img.onload = () => {
-                cartelImage = img;
-            };
-            img.onerror = () => {
-                // Manejo de error silencioso, el fallback visual está en generarCartelInspiracion
-            };
         }
     };
-
-    // Función para compartir el Versículo del Día 
+    
     function compartirVersiculo() {
         const texto = document.querySelector('.texto-verso').textContent;
         const referencia = document.querySelector('.referencia-verso').textContent;
         const textoFinal = `Versículo del Día JUMI: ${texto} - ${referencia}\n\nConoce más en: ${URL_JUMI}`;
         
         if (navigator.share) {
-          navigator.share({
-            title: 'Versículo del Día - JUMI',
-            text: textoFinal
-          }).catch(error => console.log('Error al compartir:', error));
+          navigator.share({ title: 'Versículo del Día - JUMI', text: textoFinal })
+            .catch(error => { /* Manejo de error silencioso */ });
         } else {
             const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(textoFinal)}`;
             window.open(whatsappUrl, '_blank');
         }
     }
 
-    // --- FUNCIONALIDAD: GENERADOR DE CARTELES CON CANVAS ---
-    
-    function generarCartelInspiracion() {
-        const mensaje = document.getElementById('mensajeInput').value.trim();
+    // ----------------------------------------------------
+    // 4. FUNCIONALIDAD DEL GENERADOR DE CARTELES
+    // ----------------------------------------------------
+
+    /**
+     * Cambia el color del texto del cartel entre las opciones predefinidas.
+     */
+    function cambiarColorTexto() {
+        currentColorIndex = (currentColorIndex + 1) % COLORS.length;
+        const btn = document.getElementById('cambiarColorBtn');
+        btn.innerHTML = `<i class="fas fa-palette"></i> Color Texto: ${COLORS[currentColorIndex].name}`;
+        // Regenerar el cartel si ya se había generado para aplicar el color
+        if (document.getElementById('cartelContainer').style.display !== 'none') {
+            generarCartelInspiracion(true);
+        }
+    }
+
+    /**
+     * Dibuja el cartel en el Canvas con el texto y la imagen seleccionados.
+     * @param {boolean} isRegenerate Indica si solo se está regenerando (no re-valida).
+     */
+    async function generarCartelInspiracion(isRegenerate = false) {
+        const mensajeInput = document.getElementById('mensajeInput');
+        const mensaje = mensajeInput.value.trim();
         const canvas = document.getElementById('cartelCanvas');
         const ctx = canvas.getContext('2d');
         const cartelContainer = document.getElementById('cartelContainer');
         const compartirBtn = document.getElementById('compartirCartelBtn');
+        const generarBtn = document.getElementById('generarCartelBtn');
         
         document.getElementById('error-message').style.display = 'none';
-        
-        if (!mensaje) {
-            return showError("¡El mensaje no puede estar vacío! Escribe algo de inspiración.");
+        generarBtn.disabled = true;
+
+        if (!isRegenerate) {
+            if (!mensaje) {
+                generarBtn.disabled = false;
+                return showError("¡El mensaje no puede estar vacío! Escribe algo de inspiración.");
+            }
+            if (contieneGroserias(mensaje)) {
+                generarBtn.disabled = false;
+                return showError("⚠️ ¡El mensaje contiene palabras no permitidas! Por favor, elimina cualquier grosería o contenido sensible.");
+            }
+            // Precargar solo si no es regeneración
+            await precargarImagen(); 
         }
         
-        // CENSURA: Bloqueo de palabras sensibles
-        if (contieneGroserias(mensaje)) {
-            return showError("⚠️ ¡El mensaje contiene palabras no permitidas! Por favor, elimina cualquier grosería o contenido sensible.");
-        }
-
-        // Selecciona y carga la imagen para el cartel si no está lista
-        gestorVersiculo.precargarImagenCartel();
-
-        // Configurar dimensiones del canvas
+        // --- Configuración y DIBUJO ---
         canvas.width = CARTEL_WIDTH;
         canvas.height = CARTEL_HEIGHT;
         ctx.clearRect(0, 0, CARTEL_WIDTH, CARTEL_HEIGHT);
-
-        // 1. Dibujar la Imagen (o Fallback)
+        
         let imgToDraw = cartelImage;
+        const imagenData = IMAGENES_DISPONIBLES[imagenActualKey];
 
-        if (imgToDraw && imgToDraw.complete) {
-            // Dibujar la imagen de fondo (sin censura de rostros, por diseño de imagen y zonas seguras)
+        if (imgToDraw) {
+            // Dibujar imagen de fondo
             const scale = Math.max(CARTEL_WIDTH / imgToDraw.width, CARTEL_HEIGHT / imgToDraw.height);
             const x = (CARTEL_WIDTH / 2) - (imgToDraw.width / 2) * scale;
             const y = (CARTEL_HEIGHT / 2) - (imgToDraw.height / 2) * scale;
             ctx.drawImage(imgToDraw, x, y, imgToDraw.width * scale, imgToDraw.height * scale);
             
-            // Aplicar capa semi-transparente para contraste
+            // Capa semi-transparente
             ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
             ctx.fillRect(0, 0, CARTEL_WIDTH, CARTEL_HEIGHT);
 
         } else {
-            // Fallback: Fondo Morado
-            ctx.fillStyle = '#6a0dad';
+            // FALLBACK DE ERROR: Fondo Blanco
+            ctx.fillStyle = '#FFFFFF';
             ctx.fillRect(0, 0, CARTEL_WIDTH, CARTEL_HEIGHT);
             
-            ctx.fillStyle = 'white';
+            ctx.fillStyle = IMAGENES_DISPONIBLES[imagenActualKey].safeAreaBottom > 0.4 ? 'black' : 'white';
             ctx.textAlign = 'center';
-            ctx.font = '300 24px Poppins';
-            ctx.fillText("IMAGEN PREDETERMINADA NO CARGADA", CARTEL_WIDTH / 2, 50);
+            ctx.font = '700 30px Poppins';
+            ctx.fillText("El sistema está en mantenimiento o tiene fallas.", CARTEL_WIDTH / 2, CARTEL_HEIGHT / 2 - 20);
+            ctx.font = '400 20px Poppins';
+            ctx.fillText("Volvemos luego. Intente con otra imagen.", CARTEL_WIDTH / 2, CARTEL_HEIGHT / 2 + 20);
         }
 
-        // 2. Dibujar el Mensaje (Texto del usuario) en la Zona Segura
-        ctx.fillStyle = 'white';
+        // --- Dibujar el Mensaje (en la zona segura) ---
+        ctx.fillStyle = COLORS[currentColorIndex].hex;
         ctx.textAlign = 'center';
         ctx.strokeStyle = 'rgba(0, 0, 0, 0.8)';
         ctx.lineWidth = 2;
         
-        const safeAreaTop = CARTEL_HEIGHT * imagenActual.safeAreaTop;
-        const safeAreaBottom = CARTEL_HEIGHT * imagenActual.safeAreaBottom;
+        const safeAreaTop = CARTEL_HEIGHT * imagenData.safeAreaTop;
+        const safeAreaBottom = CARTEL_HEIGHT * imagenData.safeAreaBottom;
         const maxTextWidth = CARTEL_WIDTH - 100;
 
         let currentFontSize = 48;
         let lineHeight = currentFontSize * 1.2;
         let lines = [];
 
+        // Función para calcular y ajustar líneas
         const calculateLines = (text, fontSize) => {
             ctx.font = `700 ${fontSize}px Poppins`;
             const words = text.split(' ');
@@ -851,15 +857,12 @@
             return tempLines;
         };
 
-        // Bucle para ajustar la fuente al tamaño del área segura
+        // Bucle para ajustar la fuente al área segura
         do {
             lines = calculateLines(mensaje, currentFontSize);
             lineHeight = currentFontSize * 1.2;
             const totalTextHeight = lines.length * lineHeight;
-
-            if (totalTextHeight < (safeAreaBottom - safeAreaTop - (lineHeight * 0.5))) { 
-                break;
-            }
+            if (totalTextHeight < (safeAreaBottom - safeAreaTop - (lineHeight * 0.5))) { break; }
             currentFontSize -= 2;
         } while (currentFontSize >= 24);
 
@@ -869,7 +872,6 @@
             lines = calculateLines(mensaje, currentFontSize); 
         }
 
-        // Calcular posición Y para centrar el texto verticalmente en la zona segura
         const totalTextHeight = lines.length * lineHeight;
         let startY = safeAreaTop + (safeAreaBottom - safeAreaTop - totalTextHeight) / 2 + (lineHeight * 0.8);
 
@@ -877,12 +879,13 @@
 
         lines.forEach((line, index) => {
             const y = startY + index * lineHeight;
+            // Dibujar borde/sombra
             ctx.strokeText(line, CARTEL_WIDTH / 2, y);
+            // Dibujar texto
             ctx.fillText(line, CARTEL_WIDTH / 2, y);
         });
 
-
-        // 3. Dibujar el Enlace de Atribución 
+        // 4. Dibujar el Enlace de Atribución 
         ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
         ctx.textAlign = 'right';
         ctx.font = '200 18px Poppins';
@@ -891,16 +894,19 @@
         // Mostrar el cartel
         cartelContainer.style.display = 'block';
         compartirBtn.style.display = 'block';
+        generarBtn.disabled = false;
     }
 
-    // Función para compartir la imagen del canvas
+    /**
+     * Intenta compartir o descarga la imagen del canvas.
+     */
     async function compartirCartel() {
         const canvas = document.getElementById('cartelCanvas');
         const mensaje = document.getElementById('mensajeInput').value.trim();
 
         try {
             const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.9));
-            if (!blob) throw new Error("Fallo al crear el Blob de la imagen.");
+            if (!blob) throw new Error("Fallo al crear el Blob.");
 
             const file = new File([blob], "Cartel_JUMI.jpg", { type: 'image/jpeg' });
             
@@ -913,9 +919,8 @@
             if (navigator.canShare && navigator.canShare(shareData)) {
                 await navigator.share(shareData);
             } else {
-                throw new Error("El navegador no soporta compartir archivos nativamente.");
+                throw new Error("Navegador no soporta compartir nativamente.");
             }
-
         } catch (err) {
             // Fallback: Descargar la imagen
             const imageURL = canvas.toDataURL('image/jpeg', 0.9);
@@ -928,12 +933,127 @@
             showError("Tu navegador no soporta compartir directamente. Se ha descargado la imagen.");
         }
     }
-    
-    // Inicialización al cargar el DOM
-    document.addEventListener('DOMContentLoaded', () => {
-        gestorVersiculo.iniciar();
 
-        // Animación de secciones
+
+    // ----------------------------------------------------
+    // 5. CALENDARIO DINÁMICO (Genera Reuniones Dominicales)
+    // ----------------------------------------------------
+
+    const NOMBRES_MESES = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    const NOMBRES_DIAS = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+
+    function renderCalendar(date) {
+        const year = date.getFullYear();
+        const month = date.getMonth();
+        const today = new Date();
+        
+        // 1. Mostrar Mes y Año
+        document.getElementById('monthYearDisplay').textContent = `${NOMBRES_MESES[month]} ${year}`;
+
+        const grid = document.getElementById('calendarGrid');
+        // Eliminar solo las celdas de días (mantener los nombres de días)
+        const oldCells = grid.querySelectorAll('.day-cell');
+        oldCells.forEach(cell => cell.remove());
+        
+        const firstDayOfMonth = new Date(year, month, 1);
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        // 0 = Domingo, 1 = Lunes, etc.
+        let startingDayOfWeek = firstDayOfMonth.getDay(); 
+        
+        // Días del mes anterior (para rellenar el inicio)
+        const daysInPrevMonth = new Date(year, month, 0).getDate();
+
+        // 2. Rellenar celdas del mes anterior
+        for (let i = startingDayOfWeek - 1; i >= 0; i--) {
+            const cell = document.createElement('div');
+            cell.className = 'day-cell other-month';
+            cell.textContent = daysInPrevMonth - i;
+            grid.appendChild(cell);
+        }
+
+        // 3. Rellenar celdas del mes actual
+        for (let day = 1; day <= daysInMonth; day++) {
+            const cell = document.createElement('div');
+            cell.className = 'day-cell';
+            cell.textContent = day;
+            
+            const currentDayOfWeek = (startingDayOfWeek + day - 1) % 7;
+
+            // Marcar día actual
+            if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+                cell.classList.add('current-day');
+            }
+
+            // Marcar Domingos (Día 0)
+            if (currentDayOfWeek === 0) {
+                cell.classList.add('sunday');
+                cell.innerHTML += `<span class="day-event">Reunión JUMI</span>`;
+            }
+
+            grid.appendChild(cell);
+        }
+
+        // 4. Rellenar celdas del mes siguiente
+        const totalCells = startingDayOfWeek + daysInMonth;
+        const remainingCells = 42 - totalCells; // 6 filas completas de 7 días
+        for (let day = 1; day <= remainingCells; day++) {
+            const cell = document.createElement('div');
+            cell.className = 'day-cell other-month';
+            cell.textContent = day;
+            grid.appendChild(cell);
+        }
+    }
+
+    function changeMonth(delta) {
+        currentCalendarDate.setMonth(currentCalendarDate.getMonth() + delta);
+        renderCalendar(currentCalendarDate);
+    }
+    
+    
+    // ----------------------------------------------------
+    // 6. INICIALIZACIÓN DE EVENTOS
+    // ----------------------------------------------------
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Inicializar Funcionalidades ---
+        gestorVersiculo.cargarVersiculo();
+        renderCalendar(currentCalendarDate); 
+        precargarImagen(); // Precarga la imagen por defecto
+
+        // --- Eventos de Navegación y Scroll ---
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+          document.getElementById('navLinks').classList.toggle('active');
+        });
+
+        document.querySelectorAll('nav a').forEach(anchor => {
+          anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('navLinks').classList.remove('active'); 
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+               window.scrollTo({ top: target.offsetTop - 100, behavior: 'smooth' });
+            }
+          });
+        });
+
+        // --- Eventos del Generador de Carteles ---
+        document.getElementById('generarCartelBtn').addEventListener('click', () => generarCartelInspiracion());
+        document.getElementById('compartirCartelBtn').addEventListener('click', compartirCartel);
+        document.getElementById('cambiarColorBtn').addEventListener('click', cambiarColorTexto);
+        
+        // Regenerar si cambia la imagen
+        document.getElementById('selectImagen').addEventListener('change', async () => {
+            await precargarImagen(); // Cargar la nueva imagen
+            if (document.getElementById('cartelContainer').style.display !== 'none') {
+                generarCartelInspiracion(true); // Regenerar cartel con la nueva imagen
+            }
+        });
+
+        // --- Eventos del Calendario ---
+        document.getElementById('prevMonthBtn').addEventListener('click', () => changeMonth(-1));
+        document.getElementById('nextMonthBtn').addEventListener('click', () => changeMonth(1));
+
+        // --- Animación de Secciones ---
         const observer = new IntersectionObserver((entries, observer) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -947,5 +1067,6 @@
           observer.observe(seccion);
         });
     });
-
   </script>
+</body>
+</html>
