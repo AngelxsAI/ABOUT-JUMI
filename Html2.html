@@ -128,8 +128,8 @@
       padding: 12px 25px; border-radius: 50px; font-weight: 700; text-transform: uppercase; 
       transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; 
       box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); border: 2px solid transparent;
-      position: relative; /* Para el efecto de resplandor */
-      overflow: hidden; /* Para el efecto de resplandor */
+      position: relative; 
+      overflow: hidden; 
       z-index: 1;
     }
 
@@ -170,19 +170,59 @@
     /* 5. GENERADOR DE CARTELES */
     /* ---------------------------------------------------- */
     #generador-inspiracion { text-align: center; background-color: #e3f2fd; }
-    #config-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 20px; align-items: center;}
+    #config-controls { 
+        max-width: 600px; margin: 20px auto;
+    }
+    .control-group { 
+        display: flex; flex-wrap: wrap; justify-content: space-between; gap: 15px; margin-bottom: 20px; 
+    }
     #mensajeInput, #selectImagen {
         width: 100%;
-        max-width: 600px;
         padding: 15px;
         border: 2px solid var(--accent);
         border-radius: 8px;
-        margin-bottom: 10px;
         transition: border-color 0.3s;
         font-size: 1rem;
         resize: vertical;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     }
-    #mensajeInput { min-height: 120px; }
+    #mensajeInput { min-height: 100px; }
+    #selectImagen { max-width: 100%; margin-bottom: 10px; } 
+
+    /* Estilos para el nuevo selector de color */
+    .color-selector {
+        text-align: left;
+        margin-top: 10px;
+        width: 100%;
+    }
+    .color-circles {
+        display: flex;
+        gap: 15px;
+        margin-top: 10px;
+    }
+    .color-circle {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: 2px solid #ccc;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    .color-circle:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 4px var(--accent);
+    }
+    .color-circle.active {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 5px var(--accent), 0 0 15px var(--glow-color-primary);
+        animation: pulse-border 1s infinite alternate;
+    }
+    @keyframes pulse-border {
+        0% { box-shadow: 0 0 0 5px rgba(0, 188, 212, 0.5); }
+        100% { box-shadow: 0 0 0 8px rgba(0, 188, 212, 0.8); }
+    }
+
     #error-message { color: var(--warning); font-weight: 600; margin-bottom: 15px; display: none; }
     #cartelContainer { margin-top: 30px; background-color: #fff; border-radius: 10px; padding: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); display: none; }
     #cartelCanvas { max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); display: block; margin: 0 auto; }
@@ -191,7 +231,7 @@
     }
     #compartirCartelBtn:hover { 
       background: linear-gradient(90deg, #ff9800, #ffc107); color: var(--secondary); 
-      box-shadow: 0 0 15px var(--glow-color-orange), 0 0 30px var(--glow-color-orange); /* Resplandor */
+      box-shadow: 0 0 15px var(--glow-color-orange), 0 0 30px var(--glow-color-orange); 
     }
 
     /* ---------------------------------------------------- */
@@ -236,7 +276,7 @@
     /* 7. CALENDARIO DINÁMICO (Mejorado y Animado) */
     /* ---------------------------------------------------- */
     .calendar-container {
-        max-width: 450px; /* Más compacto */
+        max-width: 450px; 
         margin: 20px auto;
         padding: 15px;
         background-color: #fcfcfc;
@@ -254,7 +294,7 @@
         background: none;
         border: none;
         color: var(--primary);
-        font-size: 1.2rem; /* Más pequeño */
+        font-size: 1.2rem; 
         cursor: pointer;
         transition: color 0.3s, transform 0.3s;
         padding: 5px;
@@ -262,48 +302,48 @@
     }
     .calendar-header button:hover { 
       color: var(--accent); transform: scale(1.1); 
-      box-shadow: 0 0 10px var(--glow-color-primary); /* Resplandor */
+      box-shadow: 0 0 10px var(--glow-color-primary); 
     }
     .calendar-header h3 { font-size: 1.3rem; color: var(--primary); }
 
     .calendar-grid {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
-        gap: 3px; /* Espacio más pequeño */
-        font-size: 0.85rem; /* Más pequeño */
+        gap: 3px; 
+        font-size: 0.85rem; 
         text-align: center;
     }
     .day-name { font-weight: 700; color: var(--primary); padding: 5px 0; font-size: 0.8rem;}
     .day-cell {
-        padding: 8px 0; /* Menos padding */
+        padding: 8px 0; 
         border-radius: 4px;
-        cursor: pointer; /* Indicar interactividad */
+        cursor: pointer; 
         position: relative;
         overflow: hidden;
         transition: all 0.2s ease-out;
-        aspect-ratio: 1 / 1; /* Celdas cuadradas */
+        aspect-ratio: 1 / 1; 
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
     }
-    .day-cell.other-month { opacity: 0.4; pointer-events: none; } /* Desactivar hover en días de otros meses */
+    .day-cell.other-month { opacity: 0.4; pointer-events: none; } 
     .day-cell.current-day { 
         background-color: var(--accent); color: white; font-weight: 700; 
-        box-shadow: 0 0 10px var(--glow-color-accent); /* Resplandor en día actual */
+        box-shadow: 0 0 10px var(--glow-color-accent); 
     }
     .day-cell.current-day:hover { transform: scale(1.05); }
 
     .day-cell.sunday { 
-        background-color: #ffe0b2; /* Naranja claro */
+        background-color: #ffe0b2; 
         color: var(--primary); font-weight: 600; 
         position: relative;
-        animation: sunday-glow 2s infinite alternate; /* Animación de resplandor suave */
+        animation: sunday-glow 2s infinite alternate; 
     }
     .day-cell.sunday.current-day { 
         background-color: var(--primary); 
         color: white; 
-        animation: none; /* Desactivar glow si es el día actual */
+        animation: none; 
         box-shadow: 0 0 10px var(--glow-color-primary), 0 0 20px var(--glow-color-primary);
     }
     .day-cell.sunday:hover { transform: scale(1.05); background-color: var(--accent); color: white; }
@@ -318,14 +358,14 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background-color: rgba(106, 13, 173, 0.8); /* Morado semi-transparente */
+        background-color: rgba(106, 13, 173, 0.8); 
         color: white;
-        font-size: 0.6em; /* Más pequeño */
+        font-size: 0.6em; 
         padding: 1px 0;
         transform: translateY(100%);
         transition: transform 0.3s ease, opacity 0.3s ease;
         opacity: 0;
-        pointer-events: none; /* No bloquear eventos de la celda */
+        pointer-events: none; 
     }
     .day-cell.sunday:hover .day-event { 
         transform: translateY(0); 
@@ -348,19 +388,20 @@
         .leadership-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 800px) {
-        /* Media queries para móvil (igual que antes) */
         .nav-links { display: none; flex-direction: column; width: 100%; padding: 0; text-align: center; }
         .nav-links.active { display: flex; }
         .mobile-menu-btn { display: block; }
         .btn-group { justify-content: space-around; }
         .btn { width: 48%; text-align: center; justify-content: center; font-size: 0.85rem; }
         header h1 { font-size: 1.8rem; }
-        .calendar-container { max-width: 95%; } /* Ajuste para móviles */
+        .calendar-container { max-width: 95%; } 
         .calendar-header h3 { font-size: 1.1rem; }
         .calendar-header button { font-size: 1rem; }
         .day-name { font-size: 0.7rem; }
         .day-cell { font-size: 0.8rem; padding: 6px 0; }
         .day-event { font-size: 0.55em; }
+        .control-group { flex-direction: column; }
+        #selectImagen { max-width: 100%; }
     }
   </style>
 </head>
@@ -412,19 +453,22 @@
 
     <section id="generador-inspiracion" class="section">
       <h2><i class="fas fa-paint-brush"></i> Generador de Carteles de Inspiración</h2>
-      <p>Escribe tu mensaje, elige un fondo, y selecciona un color. El texto aparecerá en una zona segura para no cubrir rostros.</p>
+      <p>Escribe tu mensaje y elige un fondo y color. El texto aparecerá en una zona segura para no cubrir rostros.</p>
 
-      <div style="max-width: 600px; margin: 20px auto;">
+      <div id="config-controls">
         
-        <div id="config-controls">
-            <select id="selectImagen" style="max-width: 45%;">
-                <option value="Jesus2.jpg">Fondo 1 (Jesús y la niña)</option>
-                <option value="Jesus3.jpg">Fondo 2 (Jesús en el campo)</option>
-                <option value="1000030531.jpg" selected>Fondo 3 (Jesús en el carro)</option>
+        <div class="control-group">
+            <select id="selectImagen">
+                <option value="Jesus.jpg" selected>Fondo 1 (Jesús principal)</option>
+                <option value="Jesus2.jpg">Fondo 2 (Jesús y la niña)</option>
+                <option value="Jesus3.jpg">Fondo 3 (Jesús en el campo)</option>
             </select>
-            <button id="cambiarColorBtn" class="btn btn-secondary" style="max-width: 45%;">
-                <i class="fas fa-palette"></i> Color Texto: Blanco
-            </button>
+        </div>
+
+        <div class="color-selector">
+            <p style="font-weight: 600; color: var(--primary); margin-bottom: 5px;"><i class="fas fa-palette"></i> Elige Color de Texto:</p>
+            <div class="color-circles" id="colorCirclesContainer">
+                </div>
         </div>
 
         <textarea id="mensajeInput" placeholder="Escribe tu mensaje de fe o reflexión..."></textarea>
@@ -463,7 +507,7 @@
         <div class="leadership-section">
             <h3><i class="fas fa-user-tag"></i> Subcoordinador</h3>
             <ul class="members-list">
-                <li>steven</li>
+                <li>Steven</li>
             </ul>
         </div>
         <div class="leadership-section" style="grid-column: 1 / -1;">
@@ -481,9 +525,9 @@
                 <li>Katty</li>
                 <li>Jasmin</li>
                 <li>Daniel</li>
-                <li>oscar cheguen</li>
+                <li>Oscar Cheguen</li>
                 <li>Nicol González</li>
-                <li>erika</li>
+                <li>Erika</li>
                 
             </ul>
         </div>
@@ -558,11 +602,18 @@
     const COLORS = [
         { name: "Blanco", hex: "#FFFFFF" },
         { name: "Amarillo Claro", hex: "#FFFFA0" },
-        { name: "Azul Celeste", hex: "#00BCD4" }
+        { name: "Celeste JUMI", hex: "#00BCD4" },
+        { name: "Morado JUMI", hex: "#6a0dad" }, // Nuevo color Morado
+        { name: "Naranja", hex: "#FF9800" } // Nuevo color Naranja
     ];
 
-    // --- Configuración de Imágenes y Zonas Seguras (Ajustado) ---
+    // --- Configuración de Imágenes y Zonas Seguras (¡Jesus.jpg CORREGIDO!) ---
     const IMAGENES_DISPONIBLES = {
+        "Jesus.jpg": { 
+            nombre: "Jesus.jpg", 
+            safeAreaTop: 0.05, 
+            safeAreaBottom: 0.50 
+        },
         "Jesus2.jpg": { 
             nombre: "Jesus2.jpg", 
             safeAreaTop: 0.05, 
@@ -572,11 +623,6 @@
             nombre: "Jesus3.jpg", 
             safeAreaTop: 0.05, 
             safeAreaBottom: 0.35 
-        },
-        "Jesus.jpg": { 
-            nombre: "Jesus.jpg", 
-            safeAreaTop: 0.05, 
-            safeAreaBottom: 0.50 
         }
     };
     
@@ -591,8 +637,8 @@
 
     // Variables de estado
     let cartelImage = null;
-    let imagenActualKey = "Jesus.jpg";
-    let currentColorIndex = 0; // Empieza en Blanco
+    let imagenActualKey = "Jesus.jpg"; // ¡CORREGIDO: Predeterminado a Jesus.jpg!
+    let currentColorHex = COLORS[0].hex; // Empieza en Blanco
     let currentCalendarDate = new Date();
 
 
@@ -751,17 +797,54 @@
     // ----------------------------------------------------
 
     /**
-     * Cambia el color del texto del cartel entre las opciones predefinidas.
+     * Renderiza los círculos de colores y configura sus eventos.
      */
-    function cambiarColorTexto() {
-        currentColorIndex = (currentColorIndex + 1) % COLORS.length;
-        const btn = document.getElementById('cambiarColorBtn');
-        btn.innerHTML = `<i class="fas fa-palette"></i> Color Texto: ${COLORS[currentColorIndex].name}`;
-        // Regenerar el cartel si ya se había generado para aplicar el color
+    function renderColorSelector() {
+        const container = document.getElementById('colorCirclesContainer');
+        if (!container) return;
+
+        container.innerHTML = ''; // Limpiar contenedores
+        
+        COLORS.forEach((color, index) => {
+            const circle = document.createElement('div');
+            circle.className = 'color-circle';
+            circle.style.backgroundColor = color.hex;
+            circle.setAttribute('data-color-hex', color.hex);
+            circle.setAttribute('title', color.name);
+
+            // Marcar el color inicial como activo
+            if (color.hex === currentColorHex) {
+                circle.classList.add('active');
+            }
+
+            circle.addEventListener('click', () => {
+                selectColor(circle, color.hex);
+            });
+            
+            container.appendChild(circle);
+        });
+    }
+
+    /**
+     * Selecciona el color de texto para el cartel.
+     * @param {HTMLElement} clickedCircle El círculo que fue clickeado.
+     * @param {string} hex El código hexadecimal del color.
+     */
+    function selectColor(clickedCircle, hex) {
+        currentColorHex = hex;
+        
+        // Remover 'active' de todos los círculos
+        document.querySelectorAll('.color-circle').forEach(c => c.classList.remove('active'));
+        
+        // Agregar 'active' al círculo clickeado
+        clickedCircle.classList.add('active');
+
+        // Regenerar el cartel si ya se había generado para aplicar el nuevo color
         if (document.getElementById('cartelContainer').style.display !== 'none') {
             generarCartelInspiracion(true);
         }
     }
+
 
     /**
      * Dibuja el cartel en el Canvas con el texto y la imagen seleccionados.
@@ -816,7 +899,7 @@
             ctx.fillStyle = '#FFFFFF';
             ctx.fillRect(0, 0, CARTEL_WIDTH, CARTEL_HEIGHT);
             
-            ctx.fillStyle = IMAGENES_DISPONIBLES[imagenActualKey].safeAreaBottom > 0.4 ? 'black' : 'white';
+            ctx.fillStyle = 'black';
             ctx.textAlign = 'center';
             ctx.font = '700 30px Poppins';
             ctx.fillText("El sistema está en mantenimiento o tiene fallas.", CARTEL_WIDTH / 2, CARTEL_HEIGHT / 2 - 20);
@@ -825,7 +908,7 @@
         }
 
         // --- Dibujar el Mensaje (en la zona segura) ---
-        ctx.fillStyle = COLORS[currentColorIndex].hex;
+        ctx.fillStyle = currentColorHex; // Usar el color seleccionado (HEX)
         ctx.textAlign = 'center';
         ctx.strokeStyle = 'rgba(0, 0, 0, 0.8)';
         ctx.lineWidth = 2;
@@ -1018,6 +1101,7 @@
         // --- Inicializar Funcionalidades ---
         gestorVersiculo.cargarVersiculo();
         renderCalendar(currentCalendarDate); 
+        renderColorSelector(); // ¡Nuevo selector de color!
         precargarImagen(); // Precarga la imagen por defecto
 
         // --- Eventos de Navegación y Scroll ---
@@ -1039,7 +1123,6 @@
         // --- Eventos del Generador de Carteles ---
         document.getElementById('generarCartelBtn').addEventListener('click', () => generarCartelInspiracion());
         document.getElementById('compartirCartelBtn').addEventListener('click', compartirCartel);
-        document.getElementById('cambiarColorBtn').addEventListener('click', cambiarColorTexto);
         
         // Regenerar si cambia la imagen
         document.getElementById('selectImagen').addEventListener('change', async () => {
